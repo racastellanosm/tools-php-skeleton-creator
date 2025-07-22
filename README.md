@@ -1,11 +1,12 @@
 # EquationLabs CLI tool for PHP Skeleton Creator
 
-This CLI tool helps you create a PHP skeleton for your projects, including a `composer.json` file, a `README.md`, and a basic directory structure, it's based in the symfony/cli tool and uses the symfony framework as a base for the project.
+This CLI tool helps you create a PHP skeleton for your projects and a basic directory structure (using DDD & Hexagonal principles), it's based in the symfony/cli tool and uses the symfony framework as a base for the project.
 
 Everything runs on Docker, so you don't need to install anything on your machine, just run the commands in your terminal and the tool will take care of the rest.
 
 ## Requirements
 - Docker & Docker Compose installed on your machine.
+- composer 
 
 ## Installation
 This CLI tool can be installed with:
