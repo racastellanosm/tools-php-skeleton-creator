@@ -1,8 +1,9 @@
-# EquationLabs CLI tool for PHP Skeleton Creator
+# CLI tool to create a PHP Skeleton
 
-helps developers manage php projects scaffolding from local to production environments, it uses symfony framework as base layout.
+[![Go Pipeline](https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/actions/workflows/go_releaser.yaml/badge.svg?branch=main)](https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/actions/workflows/go_releaser.yaml)
 
-Everything runs on Docker, so you don't need to install anything on your machine, just run the commands in your terminal and the tool will take care of the rest.
+helps developers manage php projects scaffolding from local to production environments, it uses symfony/skeleton as base layout and includes DDD + CQRS basic configuration and files.
+
 
 ## Requirements
 You need to have the following tools installed on your machine to use this CLI tool:
