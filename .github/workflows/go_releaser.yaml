@@ -1,0 +1,38 @@
+name: Go Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: 
+          - '1.24'
+
+    steps:
+      - name: Checkout Source Code
+        id: checkout-source
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        id: setup-go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go-version }}
+
+      - name: Tests on Go ${{ matrix.go-version }} 
+        id: run-tests
+        run: go test -json -cover ./... > TestResults-${{ matrix.go-version }}.json
+
+      - name: Upload Go Tests Results
+        id: upload-artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Go-results-${{ matrix.go-version }}
+          path: TestResults-${{ matrix.go-version }}.json
