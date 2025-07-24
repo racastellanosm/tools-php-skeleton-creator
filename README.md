@@ -1,6 +1,6 @@
 # CLI tool to create a PHP Skeleton
 
-[![Go Pipeline](https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/actions/workflows/go_releaser.yaml/badge.svg?branch=main)](https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/actions/workflows/go_releaser.yaml)
+[![Go Pipeline](https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/actions/workflows/go_releaser.yaml/badge.svg)](https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/actions/workflows/go_releaser.yaml)
 
 helps developers manage php projects scaffolding from local to production environments, it uses symfony/skeleton as base layout and includes DDD + CQRS basic configuration and files.
 
