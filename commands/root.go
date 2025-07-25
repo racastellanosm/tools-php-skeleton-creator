@@ -38,6 +38,5 @@ func init() {
 	rootCmd.PersistentFlags().BoolP("version", "V", false, "Print the version")
 	rootCmd.PersistentFlags().Bool("no-git", false, "Do not initialize Git")
 	// Add commands to the root command
-	rootCmd.AddCommand(newCommand)
-	// rootCmd.AddCommand(composerCmd) // Añadir el comando 'composer'
+	rootCmd.AddCommand(createProjectCommand)
 }

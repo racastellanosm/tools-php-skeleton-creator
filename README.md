@@ -27,8 +27,13 @@ After installing the CLI tool, you can create a new PHP skeleton project by runn
 
 ```bash
 $ equationlabs-cli help
-$ equationlabs-cli new <application-name>
+$ equationlabs-cli create <project-name>
 ```
+
+
+## What you got after project creation
+
+### Makefile for development
 
 After installation the skeleton provides a makefile to run dockerized command to ease the development process, you can run the following command to start the project:
 
@@ -42,7 +47,7 @@ $ make functional-test  # Run the functional tests
 $ make stop # Stop the project
 ```
 
-## File Structure
+### File Structure 
 After completion, you will have a basic PHP project structure ready to go using DDD & Hexagonal structure and different symfony components apart from the basic ones.
 
 After running the CLI tool, your project will have the following structure, so you can start developing your application right away, without wasting time setting up the basic structure or configuring the project:
