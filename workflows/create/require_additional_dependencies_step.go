@@ -12,7 +12,6 @@ type RequireAdditionalDependenciesStep struct{}
 func (s *RequireAdditionalDependenciesStep) Execute(projectName string) error {
 	fmt.Println("* Require Additional Dependencies Step")
 
-	// change directory to the projectName first
 	if err := os.Chdir(projectName); err != nil {
 		return fmt.Errorf("failed to change directory to %s: %w", projectName, err)
 	}
