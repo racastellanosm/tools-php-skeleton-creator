@@ -18,7 +18,7 @@ func (s *ReorganizeNeededFoldersStep) Execute(projectName string) error {
 		"src/Application",
 		"src/Domain",
 		"src/Infrastructure",
-		"src/UI",
+		"src/UI/Http/Controller",
 	}
 
 	for _, dir := range dirs {

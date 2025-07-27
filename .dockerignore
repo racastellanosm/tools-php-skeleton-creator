@@ -1,7 +1,0 @@
-.idea
-.git
-build
-tests
-vendor
-Makefile
-docker-compose*

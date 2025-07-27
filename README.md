@@ -38,8 +38,7 @@ $ equationlabs-cli create <project-name>
 After installation the skeleton provides a makefile to run dockerized command to ease the development process, you can run the following command to start the project:
 
 ```bash
-$ make build-dev # Install dependencies and build the project for development
-$ make build # Install dependencies and build the project for production
+$ make build # Install dependencies and build the project docker image
 $ make start # Start the project
 $ make unit-test  # Run the unit tests
 $ make integration-test  # Run the integration tests
@@ -53,10 +52,6 @@ After completion, you will have a basic PHP project structure ready to go using 
 After running the CLI tool, your project will have the following structure, so you can start developing your application right away, without wasting time setting up the basic structure or configuring the project:
 
 ```yaml
-.github/
-├── workflows/
-├── ci.yml
-├── release.yml
 bin/
 ├── console
 config/
@@ -79,7 +74,6 @@ composer.json
 composer.lock
 Dockerfile
 docker-compose.yml
-docker-compose.override.yml
 Makefile
 README.md
 ```

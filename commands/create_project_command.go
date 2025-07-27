@@ -27,7 +27,7 @@ This command initializes a new project directory with the necessary files and st
 		commandWorkflow.AddStep(&create.RequireDevelopmentDependenciesStep{})
 		commandWorkflow.AddStep(&create.RewriteYamlConfigToPhpStep{})
 		commandWorkflow.AddStep(&create.ReorganizeNeededFoldersStep{})
-		commandWorkflow.AddStep(&create.AddDockerComposeFilesStep{})
+		commandWorkflow.AddStep(&create.AddDockerComposeFileStep{})
 		commandWorkflow.AddStep(&create.AddMakefileStep{})
 
 		if err := commandWorkflow.Handle(workflowDependencies); err != nil {
