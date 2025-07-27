@@ -17,7 +17,7 @@ type BriandownsSpinner struct {
 }
 
 func NewSpinner(color ...string) Spinner {
-	sp := spinner.New(spinner.CharSets[35], 100*time.Millisecond)
+	sp := spinner.New(spinner.CharSets[35], 1000*time.Millisecond)
 	sp.Color(color...)
 	return &BriandownsSpinner{s: sp}
 }
