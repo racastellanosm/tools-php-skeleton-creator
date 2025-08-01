@@ -5,7 +5,6 @@ import (
 
 	"github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/utilities"
 	"github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/workflows"
-	"github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/workflows/create"
 	"github.com/spf13/cobra"
 )
 
@@ -22,13 +21,6 @@ This command initializes a new project directory with the necessary files and st
 		}
 
 		commandWorkflow := workflows.NewCreteProjectWorkflow()
-		commandWorkflow.AddStep(&create.RequireSymfonySkeletonStep{})
-		commandWorkflow.AddStep(&create.RequireAdditionalDependenciesStep{})
-		commandWorkflow.AddStep(&create.RequireDevelopmentDependenciesStep{})
-		commandWorkflow.AddStep(&create.RewriteYamlConfigToPhpStep{})
-		commandWorkflow.AddStep(&create.ReorganizeNeededFoldersStep{})
-		commandWorkflow.AddStep(&create.AddDockerComposeFileStep{})
-		commandWorkflow.AddStep(&create.AddMakefileStep{})
 
 		if err := commandWorkflow.Handle(workflowDependencies); err != nil {
 			utilities.PrintErrorBox(os.Stdout, `Error: `+err.Error())

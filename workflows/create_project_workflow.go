@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/utilities"
+	"github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/workflows/create"
 )
 
 type CreteProjectWorkflow struct {
@@ -15,8 +16,22 @@ func (w *CreteProjectWorkflow) AddStep(step Step) {
 	w.steps = append(w.steps, step)
 }
 
+func NewCreteProjectWorkflow() *CreteProjectWorkflow {
+	createProjetWorkflow := &CreteProjectWorkflow{}
+
+	createProjetWorkflow.AddStep(&create.RequireSymfonySkeletonStep{})
+	createProjetWorkflow.AddStep(&create.RequireAdditionalDependenciesStep{})
+	createProjetWorkflow.AddStep(&create.RequireDevelopmentDependenciesStep{})
+	createProjetWorkflow.AddStep(&create.RewriteYamlConfigToPhpStep{})
+	createProjetWorkflow.AddStep(&create.ReorganizeNeededFoldersStep{})
+	createProjetWorkflow.AddStep(&create.AddDockerComposeFileStep{})
+	createProjetWorkflow.AddStep(&create.AddMakefileStep{})
+
+	return createProjetWorkflow
+}
+
 func (w *CreteProjectWorkflow) Handle(dependencies WorkflowDependencies) error {
-	spinner := utilities.NewSpinner("yellow")
+	spinner := utilities.NewSpinner("green")
 
 	for _, step := range w.steps {
 		spinner.Start()
@@ -24,7 +39,10 @@ func (w *CreteProjectWorkflow) Handle(dependencies WorkflowDependencies) error {
 		err := step.Execute(dependencies.ProjectName)
 		if err != nil {
 			// use rollback step to clean everithing up
-			rollbackInCaseOfFailure(dependencies.ProjectName)
+			err := rollbackInCaseOfFailure(dependencies.ProjectName)
+			if err != nil {
+				return fmt.Errorf("failed to cleanup workspace for %s : %w", dependencies.ProjectName, err)
+			}
 			return err
 		}
 
@@ -48,6 +66,4 @@ func rollbackInCaseOfFailure(projectName string) error {
 	return nil
 }
 
-func NewCreteProjectWorkflow() *CreteProjectWorkflow {
-	return &CreteProjectWorkflow{}
-}
+

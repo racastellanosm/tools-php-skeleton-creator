@@ -16,7 +16,7 @@ start: ## Start the stack
 	@$(DOCKER_COMPOSE) up -d || $(MAKE) .cleanup
 stop: ## Stop the stack
 	@$(DOCKER_COMPOSE) down --remove-orphans -v
-unit-test: ## Execute Unit Tests
+unit-test: .is-stack-running ## Execute Unit Tests
 	@$(DOCKER_COMPOSE) exec app /bin/bash -c "php bin/phpunit"
 
 
@@ -26,4 +26,4 @@ unit-test: ## Execute Unit Tests
 	@echo "${RED}Stack stopped with error code $1${RESET}"
 	@exit 1
 .is-stack-running:
-	@if [ -z "$$(docker ps -q -f name=oc-stack)" ]; then echo "${RED}The oc-stack is not running...${RESET}"; exit 1; fi
+	@if [ -z "$$(docker ps -q -f name=app)" ]; then echo "${RED}The app is not running...${RESET}"; exit 1; fi
