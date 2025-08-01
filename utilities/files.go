@@ -15,17 +15,23 @@ import (
 func CopyFile(src, dst string) error {
 
 	// Absolute path to the folder
-	filepath, err := filepath.Abs(src)
+	fileSourcePath, err := filepath.Abs(src)
 	if err != nil {
 		log.Fatalln(err)
 	}
 
 	// Open the source file for reading
-	srcFile, err := os.Open(filepath)
+	srcFile, err := os.Open(fileSourcePath)
 	if err != nil {
 		return fmt.Errorf("failed to open the %s: %w", dst, err)
 	}
-	defer srcFile.Close()
+
+	defer func(srcFile *os.File) {
+		err := srcFile.Close()
+		if err != nil {
+
+		}
+	}(srcFile)
 
 	// Open the destination file for writing
 	dstFile, err := os.Create(dst)
