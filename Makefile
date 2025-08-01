@@ -13,7 +13,7 @@ help:
 build: ##	Build the project
 	@echo "${GREEN}Building the project...${RESET}"
 	@go build \
-		-ldflags "-X ${APP_MODULE}/commands.BuildVersion=${BUILD_VERSION} -X ${APP_MODULE}/commands.BuildDate=${BUILD_DATE}" \
+		-ldflags "-X main.buildVersion=${BUILD_VERSION} -X main.buildDate=${BUILD_DATE}" \
 		-o bin/${APP_NAME} main.go
 	@echo "${GREEN}Build completed successfully!${RESET}"
 

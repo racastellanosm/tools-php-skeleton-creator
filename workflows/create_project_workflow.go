@@ -65,5 +65,3 @@ func rollbackInCaseOfFailure(projectName string) error {
 
 	return nil
 }
-
-

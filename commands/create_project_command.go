@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var createProjectCommand = &cobra.Command{
+var CreateProjectCommand = &cobra.Command{
 	Use:   "create [project-name]",
 	Short: "Create a new PHP project skeleton",
 	Long: `Create a new PHP project skeleton with the specified name.
