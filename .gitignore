@@ -1,4 +1,7 @@
 .idea
+.DS_Store
 build/
 bin/
 coverage*
+# Added by goreleaser init:
+dist/

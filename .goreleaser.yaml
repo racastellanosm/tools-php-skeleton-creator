@@ -1,0 +1,63 @@
+version: 2
+
+project_name: equationlabs-php-cli
+
+before:
+  hooks:
+    - go mod tidy
+    - go test -cover ./...
+
+builds:
+  - binary: equatonlabs-php-cli
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    ldflags: -s -w -X 'main.buildDate={{ .Date }}' -X 'main.buildVersion={{ .Version }}'
+
+archives:
+  - formats: [tar.gz]
+    name_template: >-
+      {{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+    format_overrides:
+      - goos: windows
+        formats: ['zip']
+    files:
+      - README.md
+      - LICENSE
+
+source:
+  enabled: true
+
+checksum:
+  name_template: "{{ .ProjectName }}_{{ .Version }}--checksums.txt"
+
+changelog:
+  sort: asc
+  use: github
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - Merge branch
+      - Merge pull request
+
+universal_binaries:
+  - replace: true
+    name_template: "{{ .ProjectName }}"
+
+release:
+  prerelease: auto
+  footer: >-
+
+    ---
+
+    Released with ❤️ by [EquationLabs I/O](https://www.equationlabs.io) and [GoReleaser](https://github.com/goreleaser/goreleaser).
