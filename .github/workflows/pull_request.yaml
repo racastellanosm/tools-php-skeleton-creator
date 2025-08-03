@@ -1,4 +1,4 @@
-name: Pull Request Validation Pipeline
+name: PR Pipeline
 
 on:
   pull_request:
