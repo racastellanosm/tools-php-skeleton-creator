@@ -54,6 +54,16 @@ universal_binaries:
   - replace: true
     name_template: "{{ .ProjectName }}"
 
+homebrew_casks:
+  - name: "{{ .ProjectName }}"
+    homepage: https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator
+    description: EquationLabs PHP CLI creates scaffolded projects following equationlabs development guidelines (DDD, CQRS, Testing, Automation)
+    repository:
+      owner: "{{ env.GITHUB_REPOSITORY_OWNER }}"
+      name: eqlabs-tools-php-skeleton-creator-homebrew-tap
+    url:
+      template: https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/releases/download/{{ .Tag }}/{{ .ArtifactName }}
+
 release:
   prerelease: auto
   footer: >-
