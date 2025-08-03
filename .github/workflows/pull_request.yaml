@@ -1,8 +1,6 @@
-name: Go Pipeline
+name: Pull Request Validation Pipeline
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -12,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go-version: 
+        go-version:
           - '1.24'
 
     steps:
@@ -26,7 +24,7 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
 
-      - name: Tests on Go ${{ matrix.go-version }} 
+      - name: Tests on Go ${{ matrix.go-version }}
         id: run-tests
         run: go test -json -cover ./... > TestResults-${{ matrix.go-version }}.json
 
