@@ -63,6 +63,7 @@ homebrew_casks:
       name: eqlabs-tools-php-skeleton-creator-homebrew-tap
     url:
       template: https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/releases/download/{{ .Tag }}/{{ .ArtifactName }}
+    commit_msg_template: "Brew cask update for {{ .ProjectName }} version {{ .Tag }}"
 
 release:
   prerelease: auto
