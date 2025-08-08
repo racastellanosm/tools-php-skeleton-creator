@@ -17,7 +17,7 @@ var (
 func main() {
 
 	var app = &cobra.Command{
-		Use:   "equationlabs-cli [global options] <command> [command options] [arguments...]",
+		Use:   "equationlabs-php-cli [global options] <command> [command options] [arguments...]",
 		Short: color.GreenString("EquationLabs CLI"),
 		Long: color.GreenString("EquationLabs") + ` CLI version ` + color.YellowString(buildVersion) + ` (c) ` + fmt.Sprintf("(c) 2024-%d Raul Castellanos", time.Now().Year()) + ` (Built on ` + color.YellowString(buildDate) + `)
 Creates scaffolded projects following equationlabs development guidelines (DDD, CQRS, Testing, Automation).`,
@@ -27,6 +27,7 @@ Creates scaffolded projects following equationlabs development guidelines (DDD, 
 	// Now we add the commands
 	app.AddCommand(commands.CreateProjectCommand)
 	app.AddCommand(commands.NewSlimProjectCommand)
+	app.AddCommand(commands.CompletionCmd)
 
 	// Run application
 	app.Execute()

@@ -22,7 +22,7 @@ builds:
 archives:
   - formats: [tar.gz]
     name_template: >-
-      {{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}_
+      {{ .ProjectName }}-v{{ .Version }}-{{ .Os }}-{{ .Arch }}-
       {{- if eq .Arch "amd64" }}x86_64
       {{- else if eq .Arch "386" }}i386
       {{- else }}{{ .Arch }}{{ end }}
@@ -38,7 +38,7 @@ source:
   enabled: true
 
 checksum:
-  name_template: "{{ .ProjectName }}_{{ .Version }}--checksums.txt"
+  name_template: "{{ .ProjectName }}-{{ .Version }}--checksums.txt"
 
 changelog:
   sort: asc
@@ -59,7 +59,7 @@ homebrew_casks:
     homepage: https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator
     description: EquationLabs PHP CLI creates scaffolded projects following equationlabs development guidelines (DDD, CQRS, Testing, Automation)
     repository:
-      owner: Equation-Labs-I-O
+      owner: racastellanosm
       name: eqlabs-tools-php-skeleton-creator-homebrew-tap
     url:
       template: https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/releases/download/{{ .Tag }}/{{ .ArtifactName }}
