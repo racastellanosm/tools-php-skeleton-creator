@@ -24,10 +24,6 @@ jobs:
               with:
                   fetch-depth: 0
 
-            - name: Which Token i am using
-              id: print-token
-              run: echo "PAT -> ${{ secrets.TAP_GITHUB_TOKEN }}  AND GT -> ${{ secrets.GITHUB_TOKEN }} OR ${{ env.TAP_GITHUB_TOKEN }}"
-
             - name: Run GoReleaser
               id: go-releaser
               uses: goreleaser/goreleaser-action@v6
@@ -36,4 +32,4 @@ jobs:
                   args: release --clean
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  TAP_GITHUB_TOKEN: ${{ secrets.TAP_GITHUB_TOKEN }}
+                  TAP_GITHUB_TOKEN: ${{ env.TAP_GITHUB_TOKEN }}
