@@ -59,7 +59,7 @@ homebrew_casks:
     homepage: https://github.com/equationlabs/eqlabs-tools-php-skeleton-creator
     description: EquationLabs PHP CLI creates scaffolded projects following equationlabs development guidelines (DDD, CQRS, Testing, Automation)
     repository:
-      owner: equationlabs-php-cli
+      owner: equationlabs
       name: eqlabs-tools-php-skeleton-creator-homebrew-tap
       token: "{{ secrets.TAP_GITHUB_TOKEN }}"
     url:
