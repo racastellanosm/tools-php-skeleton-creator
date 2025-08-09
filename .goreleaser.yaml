@@ -56,13 +56,14 @@ universal_binaries:
 
 homebrew_casks:
   - name: "{{ .ProjectName }}"
-    homepage: https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator
+    homepage: https://github.com/equationlabs/eqlabs-tools-php-skeleton-creator
     description: EquationLabs PHP CLI creates scaffolded projects following equationlabs development guidelines (DDD, CQRS, Testing, Automation)
     repository:
-      owner: racastellanosm
+      owner: equationlabs-php-cli
       name: eqlabs-tools-php-skeleton-creator-homebrew-tap
+      token: "{{ secrets.TAP_GITHUB_TOKEN }}"
     url:
-      template: https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/releases/download/{{ .Tag }}/{{ .ArtifactName }}
+      template: https://github.com/equationlabs/eqlabs-tools-php-skeleton-creator/releases/download/{{ .Tag }}/{{ .ArtifactName }}
     commit_msg_template: "Brew cask update for {{ .ProjectName }} version {{ .Tag }}"
 
 release:
