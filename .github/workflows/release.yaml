@@ -26,7 +26,7 @@ jobs:
 
             - name: Which Token i am using
               id: print-token
-              run: echo "PAT -> ${{ secrets.TAP_GITHUB_TOKEN }}"
+              run: echo "PAT -> ${{ secrets.TAP_GITHUB_TOKEN }}  AND GT -> ${{ secrets.GITHUB_TOKEN }}"
 
             - name: Run GoReleaser
               id: go-releaser
