@@ -24,6 +24,10 @@ jobs:
               with:
                   fetch-depth: 0
 
+            - name: Which Token i am using
+              id: print-token
+              run: echo "PAT -> ${{ secrets.TAP_GITHUB_TOKEN }}"
+
             - name: Run GoReleaser
               id: go-releaser
               uses: goreleaser/goreleaser-action@v6
