@@ -60,8 +60,8 @@ homebrew_casks:
     description: EquationLabs PHP CLI creates scaffolded projects following equationlabs development guidelines (DDD, CQRS, Testing, Automation)
     repository:
       owner: equationlabs
-      name: eqlabs-tools-php-skeleton-creator-homebrew-tap
-      token: "{{ secrets.TAP_GITHUB_TOKEN }}"
+      name: eqlabs-tools-php-cli-homebrew-tap
+      token: "{{ .Env.TAP_GITHUB_TOKEN }}"
     url:
       template: https://github.com/equationlabs/eqlabs-tools-php-skeleton-creator/releases/download/{{ .Tag }}/{{ .ArtifactName }}
     commit_msg_template: "Brew cask update for {{ .ProjectName }} version {{ .Tag }}"
