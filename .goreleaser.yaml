@@ -4,12 +4,12 @@ project_name: equationlabs-php-cli
 
 before:
   hooks:
-    - go mod download
+    - go mod tidy
     - go test -cover ./...
 
 builds:
   - binary: equatonlabs-php-cli
-    id: equatonlabs-php-cli
+    id: equatonlabs-php-cli-build
     env:
       - CGO_ENABLED=0
     goos:
@@ -21,6 +21,12 @@ builds:
     ldflags: -s -w -X 'main.buildDate={{ .Date }}' -X 'main.buildVersion={{ .Version }}'
     flags:
       - -trimpath
+
+universal_binaries:
+  - id: "{{ .ProjectName }}"
+    ids:
+      - equatonlabs-php-cli-build
+    replace: true
 
 archives:
   - formats: [tar.gz]
@@ -59,10 +65,6 @@ changelog:
       - "^test:"
       - Merge branch
       - Merge pull request
-
-universal_binaries:
-  - replace: true
-    name_template: "{{ .ProjectName }}"
 
 brews:
   - homepage: https://github.com/equationlabs/eqlabs-tools-php-skeleton-creator
