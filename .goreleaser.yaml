@@ -4,7 +4,7 @@ project_name: equationlabs-php-cli
 
 before:
   hooks:
-    - go mod tidy
+    - go mod download
     - go test -cover ./...
 
 builds:
@@ -18,7 +18,6 @@ builds:
     goarch:
       - amd64
       - arm64
-      - arm
     ldflags: -s -w -X 'main.buildDate={{ .Date }}' -X 'main.buildVersion={{ .Version }}'
     flags:
       - -trimpath
