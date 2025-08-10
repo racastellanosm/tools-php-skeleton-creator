@@ -86,10 +86,7 @@ brews:
     test: |
       system "#{bin}/equationlabs-php-cli --version"
     dependencies:
-      - name: git
-        type: optional
       - name: composer
-        type: optional
     install: |-
       bin.install "equationlabs-php-cli"
 

@@ -15,11 +15,11 @@ func (w *CreatelimProjectWorkflow) AddStep(step Step) {
 }
 
 func NewCreateSlimProjectWorkflow() *CreatelimProjectWorkflow {
-	newSlimProjectWorkflow := &CreatelimProjectWorkflow{}
+	newCreateSlimProjectWorkflow := &CreatelimProjectWorkflow{}
 
-	newSlimProjectWorkflow.AddStep(&create.RequireSlimSkeletonStep{})
+	newCreateSlimProjectWorkflow.AddStep(&create.RequireSlimSkeletonStep{})
 
-	return newSlimProjectWorkflow
+	return newCreateSlimProjectWorkflow
 }
 
 func (w *CreatelimProjectWorkflow) Handle(dependencies WorkflowDependencies) error {
