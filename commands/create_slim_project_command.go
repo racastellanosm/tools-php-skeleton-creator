@@ -7,11 +7,12 @@ import (
     "os"
 )
 
-var NewSlimProjectCommand = &cobra.Command{
-    Use:   "slim [project-name]",
-    Short: "Create a new slim project boilerplate",
-    Long:  "Creates a new Slim framework skeleton project boilerplate including EquaotionLabs development guidelines",
-    Args:  cobra.ExactArgs(1),
+var CreateProjectWithSlimCommand = &cobra.Command{
+    Use:   "create-with-slim [project-name]",
+    Short: "Create a new PHP skeleton with Slim Framework",
+    Long: `Create a new PHP project wiht Slim framework following equationlabs development guidelines (DDD, CQRS, Testing, Automation).
+This command initializes a new project directory with the necessary files and structure for a PHP application.`,
+    Args: cobra.ExactArgs(1),
     Run: func(cmd *cobra.Command, args []string) {
         projectName := args[0]
 
