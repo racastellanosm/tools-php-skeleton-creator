@@ -40,6 +40,9 @@ source:
 checksum:
   name_template: "{{ .ProjectName }}-{{ .Version }}--checksums.txt"
 
+signs:
+  - artifacts: checksum
+
 changelog:
   sort: asc
   use: github
@@ -53,7 +56,6 @@ changelog:
 universal_binaries:
   - replace: true
     name_template: "{{ .ProjectName }}"
-
 
 brews:
   - homepage: https://github.com/equationlabs/eqlabs-tools-php-skeleton-creator
