@@ -24,9 +24,13 @@ jobs:
               with:
                   fetch-depth: 0
 
-            - name: Run GoReleaser Final Tag
+            - name: Cosign installer
+              id: cosign-installer
+              uses: sigstore/cosign-installer@v3
+
+
+            - name: Generate Releease
               id: go-releaser-production
-              if: startsWith(github.ref, 'refs/tags/v')
               uses: goreleaser/goreleaser-action@v6
               with:
                   version: ${{ env.GITHUB_REF_NAME }}

@@ -41,7 +41,17 @@ checksum:
   name_template: "{{ .ProjectName }}-{{ .Version }}--checksums.txt"
 
 signs:
-  - artifacts: checksum
+  - artifacts: all
+    output: true
+    cmd: cosign
+    args:
+      - "sign-blob"
+      - "--output-certificate=${certificate}"
+      - "--output-signature=${signature}"
+      - "${artifact}"
+      - "--yes"
+    env:
+      - "COSIGN_EXPERIMENTAL=1"
 
 changelog:
   sort: asc
