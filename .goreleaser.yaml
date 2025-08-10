@@ -66,10 +66,8 @@ brews:
     commit_msg_template: "Brew cask update for {{ .ProjectName }} version {{ .Tag }}"
     directory: Formulas
     caveats: |-
-      To install shell completions, add this to your profile:
-        if command -v equationlabs-php-cli &>/dev/null; then
-          eval "$(equationlabs-php-cli completion [bash|zsh|fish])"
-        fi
+      To install shell completions, type the following command for instructions:
+        equationlabs-php-cli completion --help
     license: MIT
     test: |
       system "#{bin}/equationlabs-php-cli --version"
