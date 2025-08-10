@@ -12,6 +12,8 @@ permissions:
 jobs:
     goreleaser:
         runs-on: ubuntu-latest
+        env:
+            DOCKER_CLI_EXPERIMENTAL: "enabled"
         strategy:
             matrix:
                 go-version:
