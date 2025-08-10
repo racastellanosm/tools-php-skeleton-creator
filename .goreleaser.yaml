@@ -76,8 +76,7 @@ brews:
     commit_author:
       name: Raul Castellanos
       email: raul.c@equationlabs.io
-    url_template: https://github.com/equationlabs/eqlabs-tools-php-skeleton-creator/releases/download/{{ .Tag }}/{{ .ArtifactName }}
-    commit_msg_template: "Brew Formula update for {{ .ProjectName }} version {{ .Tag }}"
+    commit_msg_template: "Brew Formula update for {{ .ProjectName }} version {{ .Version }}"
     directory: Formula
     caveats: |-
       To install shell completions, type the following command for instructions:
@@ -90,10 +89,43 @@ brews:
     install: |-
       bin.install "equationlabs-php-cli"
 
+dockers:
+  - image_templates: [ "ghcr.io/equationlabs/{{ .ProjectName }}:{{ .Version }}-amd64" ]
+    goarch: amd64
+    use: buildx
+    build_flag_templates:
+      - "--pull"
+      - "--platform=linux/amd64"
+      - "--label=org.opencontainers.image.source=https://github.com/equationlabs/eqlabs-tools-php-skeleton-creator"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+  - image_templates: [ "ghcr.io/equationlabs/{{ .ProjectName }}:{{ .Version }}-arm64" ]
+    goarch: arm64
+    use: buildx
+    build_flag_templates:
+      - "--pull"
+      - "--platform=linux/arm64"
+      - "--label=org.opencontainers.image.source=https://github.com/equationlabs/eqlabs-tools-php-skeleton-creator"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+
+docker_manifests:
+  - name_template: ghcr.io/equationlabs/{{ .ProjectName }}:{{ .Version }}
+    image_templates: &docker_images
+      - ghcr.io/equationlabs/{{ .ProjectName }}:{{ .Version }}-amd64
+      - ghcr.io/equationlabs/{{ .ProjectName }}:{{ .Version }}-arm64
+  - name_template: ghcr.io/equationlabs/{{ .ProjectName }}:v{{ .Major }}
+    image_templates: *docker_images
+  - name_template: ghcr.io/equationlabs/{{ .ProjectName }}:v{{ .Major }}.{{ .Minor }}
+    image_templates: *docker_images
+  - name_template: ghcr.io/equationlabs/{{ .ProjectName }}:latest
+    image_templates: *docker_images
+
+
 release:
   prerelease: auto
   footer: >-
 
     ---
 
-    Released with ❤️ by [EquationLabs I/O](https://www.equationlabs.io) and [GoReleaser](https://github.com/goreleaser/goreleaser).
+    Released with ❤️ by [EquationLabs I/O](https://www.equationlabs.io) and the help of [GoReleaser](https://github.com/goreleaser/goreleaser).
