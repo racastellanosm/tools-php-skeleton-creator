@@ -24,8 +24,13 @@ jobs:
               with:
                   fetch-depth: 0
 
-            - name: Run GoReleaser
-              id: go-releaser
+            - name: Cosign installer
+              id: cosign-installer
+              uses: sigstore/cosign-installer@v3
+
+
+            - name: Generate Releease
+              id: go-releaser-production
               uses: goreleaser/goreleaser-action@v6
               with:
                   version: ${{ env.GITHUB_REF_NAME }}

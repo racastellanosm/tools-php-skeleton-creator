@@ -2,23 +2,21 @@
 
 [![Pipelines](https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/actions/workflows/pull_request.yaml/badge.svg)](https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/actions/workflows/pull_request.yaml) [![Release](https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/actions/workflows/release.yaml/badge.svg)](https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/actions/workflows/release.yaml)
 
-helps developers manage php projects scaffolding from local to production environments, it uses symfony/skeleton as base
-layout and includes DDD + CQRS basic configuration and files.
-
-## Requirements
-
-You need to have the following tools installed on your machine to use this CLI tool:
-
-- Docker & Docker Compose. (Preferred version is 20.10.0 or higher)
-- composer (PHP Package Manager).
+helps developers manage php projects scaffolding from local to production environments, it uses `symfony/skeleton` os
+`slim/slim-skeleton` as base layout and includes DDD + CQRS basic configuration and files.
 
 ## Installation
 
 This CLI tool can be installed with:
 
-- `MacOS` & `Linux` via Homebrew: `brew install equationlabs/tap/equationlabs-php-cli`
+- `MacOS` & `Linux` via Homebrew
 
-> CLI tools is made using Go and can be used on any platform regardless of the operating system.
+ ```bash
+brew install equationlabs-php-cli
+```
+
+> CLI tools is made using Go and can be used on any platform regardless of the operating system with the GoReleaser
+> Tool[1].
 
 Every release of the tool is published on GitHub and Brew automatically with the pipeline, so you can always get the
 latest version.
@@ -32,19 +30,25 @@ terminal:
 
 ```bash
 $ equationlabs-php-cli help
-$ equationlabs-php-cli create <project-name>
 ```
 
-## Tools for development
+## Signature Verification
 
-### Makefile for development
+EquationLabs PHP CLI binaries are signed using [cosign][2], which is part of [sigstore][3].
+Signatures can be verified as follows (OS and architecture omitted for clarity):
 
-After installation the skeleton provides a makefile to run dockerized command to ease the development process, you can
-run the following command to start the project:
+```console
+$ COSIGN_EXPERIMENTAL=1 cosign verify-blob --signature equationlabs-php-cli.sig equationlabs-php-cli
+tlog entry verified with uuid: "$uuid" index: "$index"
+Verified OK
+```
 
-```bash
-$ make build # Build the CLI tool
-$ make tests  # Run the unit tests
+The above uses the (currently experimental) [keyless signing][4] method.
+Alternatively, one can verify the signature by also providing the certificate:
+
+```console
+$ cosign verify-blob --cert equationlabs-php-cli.pem --signature equationlabs-php-cli.sig equationlabs-php-cli
+Verified OK
 ```
 
 ## CLI tool skeleton output
@@ -83,3 +87,11 @@ docker-compose.yml
 Makefile
 README.md
 ```
+
+[1]: https://goreleaser.com
+
+[2]: https://github.com/SigStore/cosign
+
+[3]: https://www.sigstore.dev/
+
+[4]: https://github.com/sigstore/cosign/blob/main/KEYLESS.md
