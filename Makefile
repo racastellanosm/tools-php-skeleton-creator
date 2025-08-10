@@ -1,5 +1,5 @@
 SHELL			:= /bin/bash
-APP_NAME		:= equationlabs-cli
+APP_NAME		:= equationlabs-php-cli
 APP_MODULE		:= github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator
 BUILD_VERSION	:= development # It will be overridden by release process
 BUILD_DATE		:= $(shell date +%Y-%m-%dT%H:%M:%S)

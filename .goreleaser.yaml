@@ -54,6 +54,33 @@ universal_binaries:
   - replace: true
     name_template: "{{ .ProjectName }}"
 
+
+brews:
+  - homepage: https://github.com/equationlabs/eqlabs-tools-php-skeleton-creator
+    description: EquationLabs PHP CLI creates scaffolded projects following equationlabs development guidelines (DDD, CQRS, Testing, Automation)
+    repository:
+      owner: equationlabs
+      name: eqlabs-tools-php-cli-homebrew-tap
+      token: "{{ .Env.TAP_GITHUB_TOKEN }}"
+    url_template: https://github.com/equationlabs/eqlabs-tools-php-skeleton-creator/releases/download/{{ .Tag }}/{{ .ArtifactName }}
+    commit_msg_template: "Brew cask update for {{ .ProjectName }} version {{ .Tag }}"
+    directory: Formula
+    caveats: |-
+      To install shell completions, add this to your profile:
+        if command -v equationlabs-php-cli &>/dev/null; then
+          eval "$(equationlabs-php-cli completion [bash|zsh|fish])"
+        fi
+    license: MIT
+    test: |
+      system "#{bin}/equationlabs-php-cli --version"
+    dependencies:
+      - name: git
+        type: optional
+      - name: composer
+        type: optional
+    install: |-
+      bin.install "equationlabs-php-cli"
+
 homebrew_casks:
   - name: "{{ .ProjectName }}"
     homepage: https://github.com/equationlabs/eqlabs-tools-php-skeleton-creator
