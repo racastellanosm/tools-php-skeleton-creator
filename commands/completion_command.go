@@ -1,15 +1,15 @@
 package commands
 
 import (
-    "fmt"
-    "github.com/spf13/cobra"
-    "os"
+	"fmt"
+	"github.com/spf13/cobra"
+	"os"
 )
 
-var CompletionCmd = &cobra.Command{
-    Use:   "completion [bash|zsh|fish|powershell]",
-    Short: "Generate completion script for your terminal",
-    Long: fmt.Sprintf(`To load completions:
+var CompletionCommand = &cobra.Command{
+	Use:   "completion [bash|zsh|fish|powershell]",
+	Short: "Generate completion script for your terminal",
+	Long: fmt.Sprintf(`To load completions:
 
 Bash:
 
@@ -49,19 +49,19 @@ PowerShell:
   # and source this file from your PowerShell profile.
 `, "equationlabs-php-cli"),
 
-    DisableFlagsInUseLine: true,
-    ValidArgs:             []string{"bash", "zsh", "fish", "powershell"},
-    Args:                  cobra.MatchAll(cobra.ExactArgs(1), cobra.OnlyValidArgs),
-    Run: func(cmd *cobra.Command, args []string) {
-        switch args[0] {
-        case "bash":
-            cmd.Root().GenBashCompletion(os.Stdout)
-        case "zsh":
-            cmd.Root().GenZshCompletion(os.Stdout)
-        case "fish":
-            cmd.Root().GenFishCompletion(os.Stdout, true)
-        case "powershell":
-            cmd.Root().GenPowerShellCompletionWithDesc(os.Stdout)
-        }
-    },
+	DisableFlagsInUseLine: true,
+	ValidArgs:             []string{"bash", "zsh", "fish", "powershell"},
+	Args:                  cobra.MatchAll(cobra.ExactArgs(1), cobra.OnlyValidArgs),
+	Run: func(cmd *cobra.Command, args []string) {
+		switch args[0] {
+		case "bash":
+			cmd.Root().GenBashCompletion(os.Stdout)
+		case "zsh":
+			cmd.Root().GenZshCompletion(os.Stdout)
+		case "fish":
+			cmd.Root().GenFishCompletion(os.Stdout, true)
+		case "powershell":
+			cmd.Root().GenPowerShellCompletionWithDesc(os.Stdout)
+		}
+	},
 }

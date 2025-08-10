@@ -3,26 +3,26 @@ package workflows
 import (
 	"fmt"
 	"github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/utilities"
-	create "github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/workflows/new"
+	create "github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/workflows/create_slim_project"
 )
 
-type NewSlimProjectWorkflow struct {
+type CreatelimProjectWorkflow struct {
 	steps []Step
 }
 
-func (w *NewSlimProjectWorkflow) AddStep(step Step) {
+func (w *CreatelimProjectWorkflow) AddStep(step Step) {
 	w.steps = append(w.steps, step)
 }
 
-func NewCreateSlimProjectWorkflow() *NewSlimProjectWorkflow {
-	newSlimProjectWorkflow := &NewSlimProjectWorkflow{}
+func NewCreateSlimProjectWorkflow() *CreatelimProjectWorkflow {
+	newSlimProjectWorkflow := &CreatelimProjectWorkflow{}
 
 	newSlimProjectWorkflow.AddStep(&create.RequireSlimSkeletonStep{})
 
 	return newSlimProjectWorkflow
 }
 
-func (w *NewSlimProjectWorkflow) Handle(dependencies WorkflowDependencies) error {
+func (w *CreatelimProjectWorkflow) Handle(dependencies WorkflowDependencies) error {
 	spinner := utilities.NewSpinner("yellow")
 
 	for _, step := range w.steps {

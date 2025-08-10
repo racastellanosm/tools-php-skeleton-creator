@@ -2,7 +2,7 @@
 
 [![Pipelines](https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/actions/workflows/pull_request.yaml/badge.svg)](https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/actions/workflows/pull_request.yaml) [![Release](https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/actions/workflows/release.yaml/badge.svg)](https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/actions/workflows/release.yaml)
 
-helps developers manage php projects scaffolding from local to production environments, it uses `symfony/skeleton` os
+helps developers manage php projects scaffolding from local to production environments, it uses `symfony/skeleton` or
 `slim/slim-skeleton` as base layout and includes DDD + CQRS basic configuration and files.
 
 ## Installation
@@ -67,7 +67,7 @@ bin/
 config/
 ├── packages/
 ├── services.php
-├── routes.php
+├── routes.php`
 public/
 ├── index.php
 src/
@@ -86,7 +86,7 @@ Dockerfile
 docker-compose.yml
 Makefile
 README.md
-```
+````
 
 [1]: https://goreleaser.com
 

@@ -25,11 +25,11 @@ Creates scaffolded projects following equationlabs development guidelines (DDD, 
 	}
 
 	// Now we add the commands
-	app.AddCommand(commands.CreateProjectCommand)
-	app.AddCommand(commands.NewSlimProjectCommand)
-	app.AddCommand(commands.CompletionCmd)
+	app.AddCommand(commands.CreateProjectWithSymfonyCommand)
+	app.AddCommand(commands.CreateProjectWithSlimCommand)
+	app.AddCommand(commands.CompletionCommand)
 
 	// Run application
-	app.Execute()
+	_ = app.Execute()
 
 }
