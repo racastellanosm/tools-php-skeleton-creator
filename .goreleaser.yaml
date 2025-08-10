@@ -42,7 +42,6 @@ checksum:
 
 signs:
   - artifacts: all
-    output: true
     cmd: cosign
     args:
       - "sign-blob"
@@ -76,7 +75,7 @@ brews:
       token: "{{ .Env.TAP_GITHUB_TOKEN }}"
     commit_author:
       name: Raul Castellanos
-      email: raul.c@equationlabs.io
+      email: castellanos.r@gmail.com
     url_template: https://github.com/equationlabs/eqlabs-tools-php-skeleton-creator/releases/download/{{ .Tag }}/{{ .ArtifactName }}
     commit_msg_template: "Brew Formula update for {{ .ProjectName }} version {{ .Tag }}"
     directory: Formulas
@@ -93,18 +92,6 @@ brews:
         type: optional
     install: |-
       bin.install "equationlabs-php-cli"
-
-homebrew_casks:
-  - name: "{{ .ProjectName }}"
-    homepage: https://github.com/equationlabs/eqlabs-tools-php-skeleton-creator
-    description: EquationLabs PHP CLI creates scaffolded projects following equationlabs development guidelines (DDD, CQRS, Testing, Automation)
-    repository:
-      owner: equationlabs
-      name: eqlabs-tools-php-cli-homebrew-tap
-      token: "{{ .Env.TAP_GITHUB_TOKEN }}"
-    url:
-      template: https://github.com/equationlabs/eqlabs-tools-php-skeleton-creator/releases/download/{{ .Tag }}/{{ .ArtifactName }}
-    commit_msg_template: "Brew Cask update for {{ .ProjectName }} version {{ .Tag }}"
 
 release:
   prerelease: auto
