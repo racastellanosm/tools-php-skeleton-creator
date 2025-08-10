@@ -9,6 +9,7 @@ before:
 
 builds:
   - binary: equatonlabs-php-cli
+    main: ./
     env:
       - CGO_ENABLED=0
     goos:
@@ -18,6 +19,8 @@ builds:
       - amd64
       - arm64
     ldflags: -s -w -X 'main.buildDate={{ .Date }}' -X 'main.buildVersion={{ .Version }}'
+    flags:
+      - -trimpath
 
 archives:
   - formats: [tar.gz]
