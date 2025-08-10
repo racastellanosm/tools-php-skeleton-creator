@@ -64,7 +64,7 @@ brews:
       token: "{{ .Env.TAP_GITHUB_TOKEN }}"
     url_template: https://github.com/equationlabs/eqlabs-tools-php-skeleton-creator/releases/download/{{ .Tag }}/{{ .ArtifactName }}
     commit_msg_template: "Brew cask update for {{ .ProjectName }} version {{ .Tag }}"
-    directory: Formula
+    directory: Formulas
     caveats: |-
       To install shell completions, add this to your profile:
         if command -v equationlabs-php-cli &>/dev/null; then
