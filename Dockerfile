@@ -1,11 +1,8 @@
-FROM scratch AS build
+FROM scratch
 
 COPY --from=composer/composer:2.8.10-bin /composer /usr/bin/composer
 
-COPY dist/equationlabs-php-cli /usr/local/bin/
-
-FROM scratch AS production
+COPY equationlabs-php-cli /usr/local/bin/
 
 ENTRYPOINT ["/usr/local/bin/equationlabs-php-cli"]
 
-COPY --from=build . .
