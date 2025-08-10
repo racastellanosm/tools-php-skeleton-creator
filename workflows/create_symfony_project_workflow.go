@@ -17,17 +17,17 @@ func (w *CreteSymfonyProjectWorkflow) AddStep(step Step) {
 }
 
 func NewCreateSymfonyProjectWorkflow() *CreteSymfonyProjectWorkflow {
-    createProjetWorkflow := &CreteSymfonyProjectWorkflow{}
+    createSymfonyProjetWorkflow := &CreteSymfonyProjectWorkflow{}
 
-    createProjetWorkflow.AddStep(&create.RequireSymfonySkeletonStep{})
-    createProjetWorkflow.AddStep(&create.RequireAdditionalDependenciesStep{})
-    createProjetWorkflow.AddStep(&create.RequireDevelopmentDependenciesStep{})
-    createProjetWorkflow.AddStep(&create.RewriteYamlConfigToPhpStep{})
-    createProjetWorkflow.AddStep(&create.ReorganizeNeededFoldersStep{})
-    createProjetWorkflow.AddStep(&create.AddDockerComposeFileStep{})
-    createProjetWorkflow.AddStep(&create.AddMakefileStep{})
+    createSymfonyProjetWorkflow.AddStep(&create.RequireSymfonySkeletonStep{})
+    createSymfonyProjetWorkflow.AddStep(&create.RequireAdditionalDependenciesStep{})
+    createSymfonyProjetWorkflow.AddStep(&create.RequireDevelopmentDependenciesStep{})
+    createSymfonyProjetWorkflow.AddStep(&create.RewriteYamlConfigToPhpStep{})
+    createSymfonyProjetWorkflow.AddStep(&create.ReorganizeNeededFoldersStep{})
+    createSymfonyProjetWorkflow.AddStep(&create.AddDockerComposeFileStep{})
+    createSymfonyProjetWorkflow.AddStep(&create.AddMakefileStep{})
 
-    return createProjetWorkflow
+    return createSymfonyProjetWorkflow
 }
 
 func (w *CreteSymfonyProjectWorkflow) Handle(dependencies WorkflowDependencies) error {
