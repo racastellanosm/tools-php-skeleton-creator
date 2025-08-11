@@ -26,7 +26,7 @@ tool.
 
  ```bash
 docker pull ghcr.io/equationlabs/equationlabs-php-cli:${version}
-docker run --rm -w /app --rm ghcr.io/equationlabs/equationlabs-php-cli:${version} ${command} ${options} ${arguments}
+docker run --rm -w /app -t --rm ghcr.io/equationlabs/equationlabs-php-cli:${version} ${command} ${options} ${arguments}
 ```
 
 > CLI tool brew and docker package is managed with the GoReleaser [Tool][1].
