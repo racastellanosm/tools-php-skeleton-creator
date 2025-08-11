@@ -3,6 +3,8 @@ APP_NAME		:= equationlabs-php-cli
 APP_MODULE		:= github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator
 BUILD_VERSION	:= development # It will be overridden by release process
 BUILD_DATE		:= $(shell date +%Y-%m-%dT%H:%M:%S)
+BUILD_ARCH		:= $(shell uname -m)
+BUILD_OS		:= linux
 
 help:
 	@echo "${GREEN}-------------- USAGE  --------------------------------------${RESET}"
@@ -12,10 +14,16 @@ help:
 
 build: ##	Build the project
 	@echo "${GREEN}Building the project...${RESET}"
-	@go build \
+	@echo "${GREEN}Building for OS ${BUILD_OS} and ARCH ${BUILD_ARCH}...${RESET}"
+	@go mod tidy
+	@GOOS=${BUILD_OS} GOARCH=${BUILD_ARCH} go build \
 		-ldflags "-X main.buildVersion=${BUILD_VERSION} -X main.buildDate=${BUILD_DATE}" \
-		-o bin/${APP_NAME} main.go
+		-o ${APP_NAME} main.go
 	@echo "${GREEN}Build completed successfully!${RESET}"
+
+images: ##	BUild docker image for development
+	@echo "${GREEN}Building docker image for OS ${BUILD_OS} and ARCH ${BUILD_ARCH}...${RESET}"
+	@docker build -t ${APP_NAME}:latest -f Dockerfile .
 
 test: ##	Run the tests with coverage
 	@echo "${GREEN}Running tests...${RESET}"
