@@ -5,32 +5,31 @@
 helps developers manage php projects scaffolding from local to production environments, it uses `symfony/skeleton` or
 `slim/slim-skeleton` as base layout and includes DDD + CQRS basic configuration and files.
 
-## Installation
+## Installation & Usage
 
-This CLI tool can be installed with:
+### Via Homebrew
 
-- `MacOS` & `Linux` via Homebrew
+This CLI tool can be installed with the folling command (works for `MacOS` & `Linux` ):
 
  ```bash
 brew install equationlabs-php-cli
+equationlabs-php-cli help
+equationlabs-php-cli <command> [command options] [arguments]
 ```
 
-> CLI tools is made using Go and can be used on any platform regardless of the operating system with the GoReleaser
-> Tool[1].
+### Via Docker
 
-Every release of the tool is published on GitHub and Brew automatically with the pipeline, so you can always get the
-latest version.
+If you don't want to install anything in your machine, you can use the ready-to-use `docker` image to work with the
+tool.
 
-## Usage
+> Remember to mount the volume on the path where you want to create the skeleton.
 
-After installing the CLI tool, you can create a new PHP skeleton project by running the following command in your
-terminal:
-
-> Usage: `equationlabs-cli [global options] <command> [command options] [arguments]`
-
-```bash
-$ equationlabs-php-cli help
+ ```bash
+docker pull ghcr.io/equationlabs/equationlabs-php-cli:${version}
+docker run --rm -w /app --rm ghcr.io/equationlabs/equationlabs-php-cli:${version} ${command} ${options} ${arguments}
 ```
+
+> CLI tool brew and docker package is managed with the GoReleaser [Tool][1].
 
 ## Signature Verification
 
