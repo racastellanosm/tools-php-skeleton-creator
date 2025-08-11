@@ -1,8 +1,8 @@
-FROM scratch
+FROM php:8.4-cli-alpine
 
-COPY --from=composer/composer:2.8.10-bin /composer /usr/local/bin/composer
+COPY --from=composer/composer:2.8-bin /composer /usr/bin/composer
 
-COPY equationlabs-php-cli /usr/local/bin/
+COPY equationlabs-php-cli /usr/bin/
 
-ENTRYPOINT ["/usr/local/bin/equationlabs-php-cli"]
+ENTRYPOINT ["/usr/bin/equationlabs-php-cli"]
 
