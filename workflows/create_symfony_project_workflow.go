@@ -36,14 +36,14 @@ func (w *CreteSymfonyProjectWorkflow) Handle(dependencies WorkflowDependencies) 
     for _, step := range w.steps {
         spinner.Start()
 
-        err := step.Execute(dependencies.ProjectName)
-        if err != nil {
+        stepError := step.Execute(dependencies.ProjectName)
+        if stepError != nil {
             // use rollback step to clean everithing up
-            err := rollbackInCaseOfFailure(dependencies.ProjectName)
-            if err != nil {
-                return fmt.Errorf("failed to cleanup workspace for %s : %w", dependencies.ProjectName, err)
+            rollbackError := rollbackInCaseOfFailure(dependencies.ProjectName)
+            if rollbackError != nil {
+                return fmt.Errorf("failed to cleanup workspace for %s : %w", dependencies.ProjectName, rollbackError)
             }
-            return err
+            return stepError
         }
 
         spinner.Stop()
