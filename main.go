@@ -1,7 +1,6 @@
 package main
 
 import (
-	"embed"
 	"fmt"
 	"github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/commands"
 	"github.com/fatih/color"
@@ -13,9 +12,6 @@ import (
 var (
 	buildVersion = "dev"
 	buildDate    string
-
-	//go:embed templates/*
-	templates embed.FS
 )
 
 func main() {
