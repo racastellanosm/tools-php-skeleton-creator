@@ -16,11 +16,12 @@ func (s *AddDockerComposeFileStep) Execute(projectName string) error {
 		return fmt.Errorf("failed to change directory to %s: %w", projectName, err)
 	}
 
-	if err := utilities.CopyFile("templates/docker/docker-compose.yaml", projectName+"/docker-compose.yaml"); err != nil {
+	if err := utilities.CopyFile("docker-compose.yaml", projectName+"/docker-compose.yaml"); err != nil {
 		return fmt.Errorf("failed to copy docker-compose.yaml file: %w", err)
 	}
 
-	if err := utilities.CopyFile("templates/docker/Dockerfile", projectName+"/Dockerfile"); err != nil {
+	if err := utilities.CopyFile("Dockerfile", projectName+"/Dockerfile")
+		err != nil {
 		return fmt.Errorf("failed to copy Dockerfile file: %w", err)
 	}
 
