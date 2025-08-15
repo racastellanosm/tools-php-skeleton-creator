@@ -1,57 +1,26 @@
 package utilities
 
 import (
+	"embed"
 	"fmt"
-	"io"
-	"log"
 	"os"
-	"path/filepath"
 )
 
-// copyFileContents copies the contents of the file named src to the file named
-// by dst. The file will be created if it does not already exist. If the
-// destination file exists, all it's contents will be replaced by the contents
-// of the source file.
-func CopyFile(src, dst string) error {
+//go:embed templates/*
+var staticTemplateSources embed.FS
 
-	// Absolute path to the folder
-	fileSourcePath, err := filepath.Abs(src)
+func CopyFile(sourceFileName string, targetPath string) error {
+
+	// Get the File by its name from staticTemplateSources
+	originalFileBytes, err := staticTemplateSources.ReadFile(sourceFileName)
 	if err != nil {
-		log.Fatalln(err)
+		return fmt.Errorf("failed to open the static file from sources: %w", err)
 	}
 
-	// Open the source file for reading
-	srcFile, err := os.Open(fileSourcePath)
+	err = os.WriteFile(targetPath, originalFileBytes, 0644)
 	if err != nil {
-		return fmt.Errorf("failed to open the %s: %w", dst, err)
+		return fmt.Errorf("failed to write the file on destination path: %w", err)
 	}
 
-	defer func(srcFile *os.File) {
-		err := srcFile.Close()
-		if err != nil {
-
-		}
-	}(srcFile)
-
-	// Open the destination file for writing
-	dstFile, err := os.Create(dst)
-	if err != nil {
-		return fmt.Errorf("failed to create the %s buffer: %w", dst, err)
-	}
-	// Return any errors that result from closing the destination file
-	// Will return nil if no errors occurred
-	defer func() {
-		cerr := dstFile.Close()
-		if err == nil {
-			err = cerr
-		}
-	}()
-
-	// Copy the contents of the source file into the destination files
-	if _, err = io.Copy(dstFile, srcFile); err != nil {
-		return fmt.Errorf("failed to copy %s into directory: %w", dst, err)
-	}
-
-	err = dstFile.Sync()
 	return nil
 }
