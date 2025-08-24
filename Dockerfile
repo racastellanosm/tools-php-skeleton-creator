@@ -1,8 +1,7 @@
-FROM php:8.4-cli-alpine
+FROM composer/composer:2.8 AS production
 
-COPY --from=composer/composer:2.8-bin /composer /usr/bin/composer
+WORKDIR /app
 
-COPY equationlabs-php-cli /usr/bin/
+COPY equationlabs-php-cli /app/equationlabs-php-cli
 
-ENTRYPOINT ["/usr/bin/equationlabs-php-cli"]
-
+ENTRYPOINT ["/app/equationlabs-php-cli"]
