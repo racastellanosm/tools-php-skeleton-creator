@@ -22,7 +22,7 @@ build-go-binary: ##	Build the project
 
 build-docker-image: ##	Build docker image for development
 	@echo "${GREEN}Building docker image for OS ${BUILD_OS} and ARCH ${BUILD_ARCH}...${RESET}"
-	@docker buildx build --platform=linux/${BUILD_ARCH} -t ${APP_NAME}:latest -f Dockerfile .
+	@docker build -t ${APP_NAME}:latest -f Dockerfile .
 
 test: ##	Run the tests with coverage
 	@echo "${GREEN}Running tests...${RESET}"
