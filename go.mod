@@ -1,4 +1,4 @@
-module github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator
+module github.com/racastellanosm/tools-php-skeleton-creator
 
 go 1.24.5
 

@@ -3,7 +3,7 @@ package create
 import (
 	"fmt"
 
-	"github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/utilities"
+	"github.com/racastellanosm/tools-php-skeleton-creator/utilities"
 )
 
 type RequireSymfonySkeletonStep struct{}

@@ -3,15 +3,15 @@ package commands
 import (
     "os"
 
-    "github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/utilities"
-    "github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/workflows"
+    "github.com/racastellanosm/tools-php-skeleton-creator/utilities"
+    "github.com/racastellanosm/tools-php-skeleton-creator/workflows"
     "github.com/spf13/cobra"
 )
 
 var CreateProjectWithSymfonyCommand = &cobra.Command{
     Use:   "create-with-symfony [project-name]",
     Short: "Create a new PHP project with Symfony Framework",
-    Long: `Create a new PHP project wiht Symfony framework following equationlabs development guidelines (DDD, CQRS, Testing, Automation).
+    Long: `Create a new PHP project with Symfony framework following recommended development guidelines (DDD, CQRS, Testing, Automation).
 This command initializes a new project directory with the necessary files and structure for a PHP application.`,
     Args: cobra.ExactArgs(1),
     Run: func(cmd *cobra.Command, args []string) {

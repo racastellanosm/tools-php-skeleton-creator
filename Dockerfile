@@ -6,6 +6,6 @@ WORKDIR /app
 COPY --from=composer/composer:2.8-bin /composer /usr/bin/composer
 
 # Application Binary
-COPY equationlabs-php-cli /app/equationlabs-php-cli
+COPY php-skeleton-creator-cli /app/php-skeleton-creator-cli
 
-ENTRYPOINT ["/app/equationlabs-php-cli"]
+ENTRYPOINT ["/app/php-skeleton-creator-cli"]

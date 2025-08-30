@@ -5,4 +5,4 @@ bin/
 coverage*
 # Added by goreleaser init:
 dist/
-equationlabs-php-cli
+php-skeleton-creator-cli

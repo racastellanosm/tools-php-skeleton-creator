@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/utilities"
+	"github.com/racastellanosm/tools-php-skeleton-creator/utilities"
 )
 
 type RequireAdditionalDependenciesStep struct{}

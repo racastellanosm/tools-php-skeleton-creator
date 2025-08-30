@@ -2,8 +2,8 @@ package workflows
 
 import (
 	"fmt"
-	"github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/utilities"
-	create "github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/workflows/create_slim_project"
+	"github.com/racastellanosm/tools-php-skeleton-creator/utilities"
+	create "github.com/racastellanosm/tools-php-skeleton-creator/workflows/create_slim_project"
 )
 
 type CreatelimProjectWorkflow struct {
