@@ -1,6 +1,6 @@
 # CLI tool to create a PHP Skeleton
 
-[![Pipelines](https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/actions/workflows/pull_request.yaml/badge.svg)](https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/actions/workflows/pull_request.yaml) [![Release](https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/actions/workflows/release.yaml/badge.svg)](https://github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/actions/workflows/release.yaml)
+[![Pipelines](https://github.com/racastellanosm/tools-php-skeleton-creator/actions/workflows/pull_request.yaml/badge.svg)](https://github.com/racastellanosm/tools-php-skeleton-creator/actions/workflows/pull_request.yaml) [![Release](https://github.com/racastellanosm/tools-php-skeleton-creator/actions/workflows/release.yaml/badge.svg)](https://github.com/racastellanosm/tools-php-skeleton-creator/actions/workflows/release.yaml)
 
 helps developers manage php projects scaffolding from local to production environments, it uses `symfony/skeleton` or
 `slim/slim-skeleton` as base layout and includes DDD + CQRS basic configuration and files.
@@ -9,12 +9,12 @@ helps developers manage php projects scaffolding from local to production enviro
 
 ### Via Homebrew
 
-This CLI tool can be installed with the folling command (works for `MacOS` & `Linux` ):
+This CLI tool can be installed with the following command (works for `MacOS` & `Linux` ):
 
  ```bash
-brew install equationlabs-php-cli
-equationlabs-php-cli help
-equationlabs-php-cli <command> [command options] [arguments]
+brew install php-skeleton-creator-cli
+php-skeleton-creator-cli help
+php-skeleton-creator-cli <command> [command options] [arguments]
 ```
 
 ### Via Docker
@@ -25,19 +25,19 @@ tool.
 > Remember to mount the volume on the path where you want to create the skeleton.
 
  ```bash
-docker pull ghcr.io/equationlabs/equationlabs-php-cli:${version}
-docker run -w /app -t --rm ghcr.io/equationlabs/equationlabs-php-cli:${version} ${command} ${options} ${arguments}
+docker pull ghcr.io/racastellanosm/php-skeleton-creator-cli:${version}
+docker run -v $PWD:/build -w /build -t --rm ghcr.io/racastellanosm/php-skeleton-creator-cli:${version} ${command} ${options} ${arguments}
 ```
 
 > CLI tool brew and docker package is managed with the GoReleaser [Tool][1].
 
 ## Signature Verification
 
-EquationLabs PHP CLI binaries are signed using [cosign][2], which is part of [sigstore][3].
+PHP Skeleton Creator CLI binaries are signed using [cosign][2], which is part of [sigstore][3].
 Signatures can be verified as follows (OS and architecture omitted for clarity):
 
 ```console
-$ COSIGN_EXPERIMENTAL=1 cosign verify-blob --signature equationlabs-php-cli.sig equationlabs-php-cli
+$ COSIGN_EXPERIMENTAL=1 cosign verify-blob --signature php-skeleton-creator-cli.sig php-skeleton-creator-cli
 tlog entry verified with uuid: "$uuid" index: "$index"
 Verified OK
 ```
@@ -46,7 +46,7 @@ The above uses the (currently experimental) [keyless signing][4] method.
 Alternatively, one can verify the signature by also providing the certificate:
 
 ```console
-$ cosign verify-blob --cert equationlabs-php-cli.pem --signature equationlabs-php-cli.sig equationlabs-php-cli
+$ cosign verify-blob --cert php-skeleton-creator-cli.pem --signature php-skeleton-creator-cli.sig php-skeleton-creator-cli
 Verified OK
 ```
 

@@ -4,8 +4,8 @@ import (
     "fmt"
     "os"
 
-    "github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/utilities"
-    "github.com/Equation-Labs-I-O/eqlabs-tools-php-skeleton-creator/workflows/create_symfony_project"
+    "github.com/racastellanosm/tools-php-skeleton-creator/utilities"
+    "github.com/racastellanosm/tools-php-skeleton-creator/workflows/create_symfony_project"
 )
 
 type CreteSymfonyProjectWorkflow struct {

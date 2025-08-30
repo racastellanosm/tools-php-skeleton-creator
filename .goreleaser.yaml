@@ -1,6 +1,6 @@
 version: 2
 
-project_name: equationlabs-php-cli
+project_name: php-skeleton-creator-cli
 
 before:
   hooks:
@@ -8,8 +8,8 @@ before:
     - go test -cover ./...
 
 builds:
-  - binary: equationlabs-php-cli
-    id: equationlabs-php-cli-build
+  - binary: php-skeleton-creator-cli
+    id: php-skeleton-creator-cli-build
     env:
       - CGO_ENABLED=0
     goos:
@@ -25,7 +25,7 @@ builds:
 universal_binaries:
   - id: "{{ .ProjectName }}"
     ids:
-      - equationlabs-php-cli-build
+      - php-skeleton-creator-cli-build
     replace: true
 
 archives:
@@ -66,59 +66,36 @@ changelog:
       - Merge branch
       - Merge pull request
 
-brews:
-  - homepage: https://github.com/equationlabs/eqlabs-tools-php-skeleton-creator
-    description: EquationLabs PHP CLI creates scaffolded projects following equationlabs development guidelines (DDD, CQRS, Testing, Automation)
-    repository:
-      owner: equationlabs
-      name: eqlabs-tools-php-cli-homebrew-tap
-      token: "{{ .Env.TAP_GITHUB_TOKEN }}"
-    commit_author:
-      name: Raul Castellanos
-      email: raul.c@equationlabs.io
-    commit_msg_template: "Brew Formula update for {{ .ProjectName }} version {{ .Version }}"
-    directory: Formula
-    caveats: |-
-      To install shell completions, type the following command for instructions:
-        equationlabs-php-cli completion --help
-    license: MIT
-    test: |
-      system "#{bin}/equationlabs-php-cli --version"
-    dependencies:
-      - name: composer
-    install: |-
-      bin.install "equationlabs-php-cli"
-
 dockers:
-  - image_templates: [ "ghcr.io/equationlabs/{{ .ProjectName }}:{{ .Version }}-amd64" ]
+  - image_templates: [ "ghcr.io/racastellanosm/{{ .ProjectName }}:{{ .Version }}-amd64" ]
     goarch: amd64
     use: buildx
     build_flag_templates:
       - "--pull"
       - "--platform=linux/amd64"
-      - "--label=org.opencontainers.image.source=https://github.com/equationlabs/eqlabs-tools-php-skeleton-creator"
+      - "--label=org.opencontainers.image.source=https://github.com/racastellanosm/tools-php-skeleton-creator"
       - "--label=org.opencontainers.image.created={{.Date}}"
       - "--label=org.opencontainers.image.version={{.Version}}"
-  - image_templates: [ "ghcr.io/equationlabs/{{ .ProjectName }}:{{ .Version }}-arm64" ]
+  - image_templates: [ "ghcr.io/racastellanosm/{{ .ProjectName }}:{{ .Version }}-arm64" ]
     goarch: arm64
     use: buildx
     build_flag_templates:
       - "--pull"
       - "--platform=linux/arm64"
-      - "--label=org.opencontainers.image.source=https://github.com/equationlabs/eqlabs-tools-php-skeleton-creator"
+      - "--label=org.opencontainers.image.source=https://github.com/racastellanosm/tools-php-skeleton-creator"
       - "--label=org.opencontainers.image.created={{.Date}}"
       - "--label=org.opencontainers.image.version={{.Version}}"
 
 docker_manifests:
-  - name_template: ghcr.io/equationlabs/{{ .ProjectName }}:{{ .Version }}
+  - name_template: ghcr.io/racastellanosm/{{ .ProjectName }}:{{ .Version }}
     image_templates: &docker_images
-      - ghcr.io/equationlabs/{{ .ProjectName }}:{{ .Version }}-amd64
-      - ghcr.io/equationlabs/{{ .ProjectName }}:{{ .Version }}-arm64
-  - name_template: ghcr.io/equationlabs/{{ .ProjectName }}:v{{ .Major }}
+      - ghcr.io/racastellanosm/{{ .ProjectName }}:{{ .Version }}-amd64
+      - ghcr.io/racastellanosm/{{ .ProjectName }}:{{ .Version }}-arm64
+  - name_template: ghcr.io/racastellanosm/{{ .ProjectName }}:v{{ .Major }}
     image_templates: *docker_images
-  - name_template: ghcr.io/equationlabs/{{ .ProjectName }}:v{{ .Major }}.{{ .Minor }}
+  - name_template: ghcr.io/racastellanosm/{{ .ProjectName }}:v{{ .Major }}.{{ .Minor }}
     image_templates: *docker_images
-  - name_template: ghcr.io/equationlabs/{{ .ProjectName }}:latest
+  - name_template: ghcr.io/racastellanosm/{{ .ProjectName }}:latest
     image_templates: *docker_images
 
 
@@ -128,4 +105,4 @@ release:
 
     ---
 
-    Released with ❤️ by [EquationLabs I/O](https://www.equationlabs.io) and the help of [GoReleaser](https://github.com/goreleaser/goreleaser).
+    Released with ❤️ by [Raul Castellanos](https://www.equationlabs.io) and the help of [GoReleaser](https://github.com/goreleaser/goreleaser).
