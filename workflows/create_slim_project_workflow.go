@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/racastellanosm/tools-php-skeleton-creator/utilities"
 	create "github.com/racastellanosm/tools-php-skeleton-creator/workflows/create_slim_project"
+	shared "github.com/racastellanosm/tools-php-skeleton-creator/workflows/shared"
 )
 
 type CreatelimProjectWorkflow struct {
@@ -20,8 +21,8 @@ func NewCreateSlimProjectWorkflow() *CreatelimProjectWorkflow {
 	newCreateSlimProjectWorkflow.AddStep(&create.RequireSlimSkeletonStep{})
 	newCreateSlimProjectWorkflow.AddStep(&create.RequireDevelopmentDependenciesStep{})
 	newCreateSlimProjectWorkflow.AddStep(&create.ReorganizeNeededFoldersStep{})
-	newCreateSlimProjectWorkflow.AddStep(&create.AddDockerComposeFileStep{})
-	newCreateSlimProjectWorkflow.AddStep(&create.AddMakefileStep{})
+	newCreateSlimProjectWorkflow.AddStep(&shared.AddDockerComposeFileStep{})
+	newCreateSlimProjectWorkflow.AddStep(&shared.AddMakefileStep{})
 
 	return newCreateSlimProjectWorkflow
 }
