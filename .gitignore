@@ -5,4 +5,5 @@ bin/
 coverage*
 # Added by goreleaser init:
 dist/
+basic-one/
 php-skeleton-creator-cli

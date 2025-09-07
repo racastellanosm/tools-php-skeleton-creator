@@ -3,7 +3,7 @@ APP_NAME		:= php-skeleton-creator-cli
 BUILD_VERSION	:= development # It will be overridden by release process
 BUILD_DATE		:= $(shell date +%Y-%m-%dT%H:%M:%S)
 BUILD_ARCH		:= $(shell uname -m)
-BUILD_OS		:= linux
+BUILD_OS		:= $(shell uname -s | tr A-Z a-z)
 
 help:
 	@echo "${GREEN}-------------- USAGE  --------------------------------------${RESET}"
