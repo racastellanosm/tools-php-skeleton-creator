@@ -18,6 +18,10 @@ func NewCreateSlimProjectWorkflow() *CreatelimProjectWorkflow {
 	newCreateSlimProjectWorkflow := &CreatelimProjectWorkflow{}
 
 	newCreateSlimProjectWorkflow.AddStep(&create.RequireSlimSkeletonStep{})
+	newCreateSlimProjectWorkflow.AddStep(&create.RequireDevelopmentDependenciesStep{})
+	newCreateSlimProjectWorkflow.AddStep(&create.ReorganizeNeededFoldersStep{})
+	newCreateSlimProjectWorkflow.AddStep(&create.AddDockerComposeFileStep{})
+	newCreateSlimProjectWorkflow.AddStep(&create.AddMakefileStep{})
 
 	return newCreateSlimProjectWorkflow
 }
