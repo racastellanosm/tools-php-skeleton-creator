@@ -5,7 +5,8 @@ import (
     "os"
 
     "github.com/racastellanosm/tools-php-skeleton-creator/utilities"
-    "github.com/racastellanosm/tools-php-skeleton-creator/workflows/create_symfony_project"
+    create "github.com/racastellanosm/tools-php-skeleton-creator/workflows/create_symfony_project"
+    shared "github.com/racastellanosm/tools-php-skeleton-creator/workflows/shared"
 )
 
 type CreteSymfonyProjectWorkflow struct {
@@ -24,8 +25,8 @@ func NewCreateSymfonyProjectWorkflow() *CreteSymfonyProjectWorkflow {
     createSymfonyProjetWorkflow.AddStep(&create.RequireDevelopmentDependenciesStep{})
     createSymfonyProjetWorkflow.AddStep(&create.RewriteYamlConfigToPhpStep{})
     createSymfonyProjetWorkflow.AddStep(&create.ReorganizeNeededFoldersStep{})
-    createSymfonyProjetWorkflow.AddStep(&create.AddDockerComposeFileStep{})
-    createSymfonyProjetWorkflow.AddStep(&create.AddMakefileStep{})
+    createSymfonyProjetWorkflow.AddStep(&shared.AddDockerComposeFileStep{})
+    createSymfonyProjetWorkflow.AddStep(&shared.AddMakefileStep{})
 
     return createSymfonyProjetWorkflow
 }
