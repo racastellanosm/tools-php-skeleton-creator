@@ -39,8 +39,8 @@ This command initializes a new project directory with the necessary files and st
 }
 
 func init() {
-	CreateProjectWithSlimCommand.Flags().StringVarP(&slimProjectName, "name", "p", "", "The desired project name")
-	CreateProjectWithSlimCommand.Flags().StringVarP(&slimDatabase, "database", "d", "postgresql", "The desired database name")
+	CreateProjectWithSlimCommand.Flags().StringVar(&slimProjectName, "name", "", "The desired project name")
+	CreateProjectWithSlimCommand.Flags().StringVar(&slimDatabase, "db", "postgresql", "The desired database name")
 
 	if err := CreateProjectWithSlimCommand.MarkFlagRequired("name"); err != nil {
 		utilities.PrintErrorBox(os.Stdout, "Project name is required: ´--name your-project-name´")
