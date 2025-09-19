@@ -54,7 +54,7 @@ func (w *CreateSymfonyProjectWorkflow) Handle(dependencies WorkflowDependencies)
 }
 
 func rollbackInCaseOfFailure(projectName string) error {
-	fmt.Println("Rollback & Cleaning Everithing Step")
+	fmt.Println("Rollback & Cleaning Everything Step")
 
 	if err := os.Chdir(".."); err != nil {
 		return fmt.Errorf("failed to change directory to %s: %w", projectName, err)
