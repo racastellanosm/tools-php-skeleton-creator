@@ -2,6 +2,7 @@ package workflows
 
 type WorkflowDependencies struct {
 	ProjectName string
+	Database    string
 }
 
 type Workflow interface {
