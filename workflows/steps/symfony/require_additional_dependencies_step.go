@@ -19,8 +19,9 @@ func (s *RequireAdditionalDependenciesStep) Execute(parameters steps.StepParamet
 
 	dependencies := []string{
 		"symfony/messenger",
+		"symfony/console",
 		"symfony/http-client",
-		"symfony/uid",
+		"runtime/roadrunner-symfony-nyholm",
 	}
 
 	for _, dep := range dependencies {

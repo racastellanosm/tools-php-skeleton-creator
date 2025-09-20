@@ -29,6 +29,8 @@ func (s *RequireSlimSkeletonStep) Execute(parameters steps.StepParameters) error
 	dependencies := []string{
 		"slim/slim",
 		"slim/psr7",
+		"doctrine/dbal",
+		"runtime/roadrunner-nyholm",
 	}
 
 	if output, err := utilities.RunComposer(utilities.ComposerRunner{}, append(prefixCommand, dependencies...)); err != nil {

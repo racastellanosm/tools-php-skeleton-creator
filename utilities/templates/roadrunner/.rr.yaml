@@ -1,0 +1,49 @@
+# RR configuration version
+version: '3'
+
+# Application server settings (docs: https://roadrunner.dev/docs/php-worker)
+server:
+  command: "php public/index.php"
+  env:
+    APP_DEBUG: ${APP_DEBUG}
+    APP_RUNTIME: Runtime\RoadRunnerSymfonyNyholm\Runtime
+  relay: pipes
+
+
+http:
+  address: 0.0.0.0:8080
+  internal_error_code: 500
+  access_logs: false
+  max_request_size: 256
+  raw_body: false
+
+  pool:
+    num_workers: ${APP_NUM_WORKERS}
+    max_jobs: ${APP_MAX_JOBS}
+    supervisor:
+      max_worker_memory: ${APP_MAX_WORKER_MEMORY}
+
+  middleware: [ "headers", "gzip", "http_metrics" ]
+
+metrics:
+  # Prometheus client address (path /metrics added automatically).
+  address: 0.0.0.0:2112
+
+status:
+  address: 0.0.0.0:8081
+  unavailable_status_code: 503
+
+logs:
+  mode: production
+  encoding: json
+  channels:
+    http:
+      level: info # Log all http requests, set to info to disable
+      encoding: json
+    server:
+      level: info # Everything written to worker stderr is logged
+      encoding: json
+    metrics:
+      level: error
+      encoding: json
+

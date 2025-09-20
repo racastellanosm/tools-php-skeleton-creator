@@ -1,4 +1,4 @@
-FROM php:8.4-cli-alpine AS production
+FROM ghcr.io/racastellanosm/php.all.extensions:8.4 AS production
 
 WORKDIR /app
 

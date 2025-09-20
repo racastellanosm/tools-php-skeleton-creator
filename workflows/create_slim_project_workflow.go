@@ -19,6 +19,7 @@ func NewCreateSlimProjectWorkflow() *CreateSlimProjectWorkflow {
 	newCreateSlimProjectWorkflow.AddStep(&slim.RequireDevelopmentDependenciesStep{})
 	newCreateSlimProjectWorkflow.AddStep(&slim.ReorganizeNeededFoldersStep{})
 	newCreateSlimProjectWorkflow.AddStep(&shared.AddDockerComposeFileStep{})
+	newCreateSlimProjectWorkflow.AddStep(&shared.AddRoadrunnerFiles{})
 	newCreateSlimProjectWorkflow.AddStep(&shared.AddMakefileStep{})
 
 	return newCreateSlimProjectWorkflow
