@@ -17,16 +17,21 @@ func (s *AddDockerComposeFileStep) Execute(parameters steps.StepParameters) erro
 		return fmt.Errorf("failed to change directory to %s: %w", parameters.ProjectName, err)
 	}
 
-	destinationPath := fmt.Sprintf("%s/docker-compose.yaml", parameters.ProjectName)
-	sourceFile := "templates/docker/docker-compose.yaml"
-	if err := utilities.CopyFile(sourceFile, destinationPath); err != nil {
-		return fmt.Errorf("failed to copy docker-compose.yaml file: %w", err)
-	}
+	files := []string{"docker-compose.yaml", "docker-compose.override.yaml", "Dockerfile", "env.dist"}
 
-	destinationPath = fmt.Sprintf("%s/Dockerfile", parameters.ProjectName)
-	sourceFile = "templates/docker/Dockerfile"
-	if err := utilities.CopyFile(sourceFile, destinationPath); err != nil {
-		return fmt.Errorf("failed to copy Dockerfile file: %w", err)
+	switch parameters.Database {
+	case "postgresql":
+		sourceDir := "templates/docker/postgresql"
+		destinationDir := fmt.Sprintf("%s", parameters.ProjectName)
+		if err := utilities.CopyFileFromDirectory(sourceDir, destinationDir, files); err != nil {
+			return fmt.Errorf("failed to copy docker with postgresql files: %w", err)
+		}
+	case "mysql":
+		sourceDir := "templates/docker/mysql"
+		destinationDir := fmt.Sprintf("%s", parameters.ProjectName)
+		if err := utilities.CopyFileFromDirectory(sourceDir, destinationDir, files); err != nil {
+			return fmt.Errorf("failed to copy docker with mysql files: %w", err)
+		}
 	}
 
 	return nil
