@@ -2,7 +2,6 @@ package shared
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/racastellanosm/tools-php-skeleton-creator/utilities"
 	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps"
@@ -13,11 +12,7 @@ type AddDockerComposeFileStep struct{}
 func (s *AddDockerComposeFileStep) Execute(parameters steps.StepParameters) error {
 	fmt.Println("* Add Docker Compose Files Step" + parameters.ProjectName)
 
-	if err := os.Chdir(".."); err != nil {
-		return fmt.Errorf("failed to change directory to %s: %w", parameters.ProjectName, err)
-	}
-
-	files := []string{"docker-compose.yaml", "docker-compose.override.yaml", "Dockerfile", "env.dist"}
+	files := []string{"docker-compose.yaml", "docker-compose.override.yaml", "Dockerfile"}
 
 	switch parameters.Database {
 	case "postgresql":

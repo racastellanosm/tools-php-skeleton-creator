@@ -6,7 +6,7 @@ services:
     container_name: api
     command: [ "sh", "-c", "/usr/bin/rr serve -c .rr.yaml" ]
     env_file:
-      - env.dist
+      - .env
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://127.0.0.1:8081/health?plugin=http || exit 1"]
       interval: 2s
@@ -18,9 +18,9 @@ services:
   postgresql:
     image: postgres:17-alpine
     env_file:
-      - env.dist
+      - .env
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -d music_posters -U posters" ]
+      test: [ "CMD-SHELL", "pg_isready -d project_name_placeholder -U my_user" ]
       interval: 2s
       timeout: 5s
       retries: 30

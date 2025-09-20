@@ -37,3 +37,22 @@ func CopyFileFromDirectory(sourceDir string, destinationDir string, files []stri
 
 	return nil
 }
+
+func MergeContentBetweenTwoFiles(firstFile string, secondFile string, targetPath string) error {
+	firstFileBytes, err := os.ReadFile(firstFile)
+	if err != nil {
+		return fmt.Errorf("failed to read the first file: %w", err)
+	}
+
+	secondFileBytes, err := staticTemplateSources.ReadFile(secondFile)
+	if err != nil {
+		return fmt.Errorf("failed to read the second file: %w", err)
+	}
+
+	err = os.WriteFile(targetPath, append(firstFileBytes, secondFileBytes...), 0644)
+	if err != nil {
+		return fmt.Errorf("failed to write the file on destination path: %w", err)
+	}
+
+	return nil
+}
