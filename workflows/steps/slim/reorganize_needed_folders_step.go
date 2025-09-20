@@ -1,14 +1,16 @@
-package create
+package slim
 
 import (
 	"fmt"
 	"os"
+
+	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps"
 )
 
 type ReorganizeNeededFoldersStep struct{}
 
-func (s *ReorganizeNeededFoldersStep) Execute(projectName string) error {
-	fmt.Println("* Reorganize Needed Folders Step " + projectName)
+func (s *ReorganizeNeededFoldersStep) Execute(parameters steps.StepParameters) error {
+	fmt.Println("* Reorganize Needed Folders Step " + parameters.ProjectName)
 
 	dirs := []string{
 		"public",

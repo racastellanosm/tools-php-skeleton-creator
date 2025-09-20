@@ -1,24 +1,25 @@
-package create
+package slim
 
 import (
 	"fmt"
 	"os"
 
 	"github.com/racastellanosm/tools-php-skeleton-creator/utilities"
+	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps"
 )
 
 type RequireSlimSkeletonStep struct{}
 
-func (s *RequireSlimSkeletonStep) Execute(projectName string) error {
+func (s *RequireSlimSkeletonStep) Execute(parameters steps.StepParameters) error {
 	fmt.Println("* Require Slim Skeleton Step")
-	
+
 	// Create project dir
-	if err := os.MkdirAll(projectName, 0755); err != nil {
-		return fmt.Errorf("failed to create directory %s: %w", projectName, err)
+	if err := os.MkdirAll(parameters.ProjectName, 0755); err != nil {
+		return fmt.Errorf("failed to create directory %s: %w", parameters.ProjectName, err)
 	}
-	
-	if err := os.Chdir(projectName); err != nil {
-		return fmt.Errorf("failed to change directory to %s: %w", projectName, err)
+
+	if err := os.Chdir(parameters.ProjectName); err != nil {
+		return fmt.Errorf("failed to change directory to %s: %w", parameters.ProjectName, err)
 	}
 
 	prefixCommand := []string{

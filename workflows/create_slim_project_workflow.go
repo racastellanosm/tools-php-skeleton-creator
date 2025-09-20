@@ -1,51 +1,29 @@
 package workflows
 
 import (
-	"fmt"
-
-	"github.com/racastellanosm/tools-php-skeleton-creator/utilities"
-	create "github.com/racastellanosm/tools-php-skeleton-creator/workflows/create_slim_project"
-	shared "github.com/racastellanosm/tools-php-skeleton-creator/workflows/shared"
+	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps"
+	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps/shared"
+	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps/slim"
 )
 
-type CreateSlimProjectWorkflow struct {
-	steps []Step
-}
+var _ Workflow = (*CreateSlimProjectWorkflow)(nil)
 
-func (w *CreateSlimProjectWorkflow) AddStep(step Step) {
-	w.steps = append(w.steps, step)
+type CreateSlimProjectWorkflow struct {
+	BaseWorkflow
 }
 
 func NewCreateSlimProjectWorkflow() *CreateSlimProjectWorkflow {
 	newCreateSlimProjectWorkflow := &CreateSlimProjectWorkflow{}
 
-	newCreateSlimProjectWorkflow.AddStep(&create.RequireSlimSkeletonStep{})
-	newCreateSlimProjectWorkflow.AddStep(&create.RequireDevelopmentDependenciesStep{})
-	newCreateSlimProjectWorkflow.AddStep(&create.ReorganizeNeededFoldersStep{})
+	newCreateSlimProjectWorkflow.AddStep(&slim.RequireSlimSkeletonStep{})
+	newCreateSlimProjectWorkflow.AddStep(&slim.RequireDevelopmentDependenciesStep{})
+	newCreateSlimProjectWorkflow.AddStep(&slim.ReorganizeNeededFoldersStep{})
 	newCreateSlimProjectWorkflow.AddStep(&shared.AddDockerComposeFileStep{})
 	newCreateSlimProjectWorkflow.AddStep(&shared.AddMakefileStep{})
 
 	return newCreateSlimProjectWorkflow
 }
 
-func (w *CreateSlimProjectWorkflow) Handle(dependencies WorkflowDependencies) error {
-	spinner := utilities.NewSpinner("yellow")
-
-	for _, step := range w.steps {
-		spinner.Start()
-
-		stepError := step.Execute(dependencies.ProjectName)
-		if stepError != nil {
-			// use rollback step to clean everything up
-			rollbackError := rollbackInCaseOfFailure(dependencies.ProjectName)
-			if rollbackError != nil {
-				return fmt.Errorf("failed to cleanup workspace for %s : %w", dependencies.ProjectName, rollbackError)
-			}
-			return stepError
-		}
-
-		spinner.Stop()
-	}
-
-	return nil
+func (w *CreateSlimProjectWorkflow) Handle(parameters steps.StepParameters) error {
+	return w.BaseWorkflow.Handle(parameters, "yellow")
 }

@@ -1,19 +1,20 @@
-package create
+package symfony
 
 import (
 	"fmt"
 	"os"
 
 	"github.com/racastellanosm/tools-php-skeleton-creator/utilities"
+	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps"
 )
 
 type RequireAdditionalDependenciesStep struct{}
 
-func (s *RequireAdditionalDependenciesStep) Execute(projectName string) error {
+func (s *RequireAdditionalDependenciesStep) Execute(parameters steps.StepParameters) error {
 	fmt.Println("* Require Additional Dependencies Step")
 
-	if err := os.Chdir(projectName); err != nil {
-		return fmt.Errorf("failed to change directory to %s: %w", projectName, err)
+	if err := os.Chdir(parameters.ProjectName); err != nil {
+		return fmt.Errorf("failed to change directory to %s: %w", parameters.ProjectName, err)
 	}
 
 	dependencies := []string{

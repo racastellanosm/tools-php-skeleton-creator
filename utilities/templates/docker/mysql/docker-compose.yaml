@@ -1,0 +1,28 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api
+    command: [ "sh", "-c", "/usr/bin/rr serve -c .rr.yaml" ]
+    env_file:
+      - env.dist
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://127.0.0.1:8081/health?plugin=http || exit 1"]
+      interval: 2s
+      timeout: 5s
+      retries: 10
+    depends_on:
+      mysql: { condition: service_healthy, required: false }
+
+  mysql:
+    image: mysql:9.4
+    env_file:
+      - env.dist
+    tmpfs:
+      - /var/lib/mysql
+    healthcheck:
+      test: [ "CMD-SHELL", "mysql -u localroot -plocalpasswd -e 'SELECT 1'" ]
+      interval: 2s
+      timeout: 5s
+      retries: 30

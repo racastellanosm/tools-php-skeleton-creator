@@ -5,6 +5,9 @@
 helps developers manage php projects scaffolding from local to production environments, it uses `symfony/skeleton` or
 `slim/slim-skeleton` as base layout and includes DDD + CQRS basic configuration and files.
 
+By default, comes with a `Dockerfile` with a base image with [RoadRunner][5] + `MySQL` or `PostgreSQL` extension support depending
+on the option you pass when use the tool
+
 ## Installation & Usage
 
 ### Via Homebrew
@@ -79,10 +82,12 @@ tests/
 ├── Functional/
 .gitignore
 .dockerignore
+.env.dist
 composer.json
 composer.lock
 Dockerfile
 docker-compose.yml
+docker-compose.override.yml
 Makefile
 README.md
 ````
@@ -94,3 +99,5 @@ README.md
 [3]: https://www.sigstore.dev/
 
 [4]: https://github.com/sigstore/cosign/blob/main/KEYLESS.md
+
+[5]: https://roadrunner.dev
