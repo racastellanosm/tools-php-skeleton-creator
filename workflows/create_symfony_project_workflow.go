@@ -24,6 +24,7 @@ func NewCreateSymfonyProjectWorkflow() *CreateSymfonyProjectWorkflow {
 	createSymfonyProjectWorkflow.AddStep(&shared.AddDockerComposeFileStep{})
 	createSymfonyProjectWorkflow.AddStep(&shared.AddRoadrunnerFiles{})
 	createSymfonyProjectWorkflow.AddStep(&shared.AddMakefileStep{})
+	createSymfonyProjectWorkflow.AddStep(&shared.RemoveUnneededFiles{})
 
 	return createSymfonyProjectWorkflow
 }
