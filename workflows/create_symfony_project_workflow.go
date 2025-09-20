@@ -5,9 +5,9 @@ import (
 	"os"
 
 	"github.com/racastellanosm/tools-php-skeleton-creator/utilities"
-	create "github.com/racastellanosm/tools-php-skeleton-creator/workflows/create_symfony_project"
-	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/shared"
 	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps"
+	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps/shared"
+	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps/symfony"
 )
 
 var _ Workflow = (*CreateSymfonyProjectWorkflow)(nil)
@@ -23,11 +23,11 @@ func (w *CreateSymfonyProjectWorkflow) AddStep(step steps.Step) {
 func NewCreateSymfonyProjectWorkflow() *CreateSymfonyProjectWorkflow {
 	createSymfonyProjectWorkflow := &CreateSymfonyProjectWorkflow{}
 
-	createSymfonyProjectWorkflow.AddStep(&create.RequireSymfonySkeletonStep{})
-	createSymfonyProjectWorkflow.AddStep(&create.RequireAdditionalDependenciesStep{})
-	createSymfonyProjectWorkflow.AddStep(&create.RequireDevelopmentDependenciesStep{})
-	createSymfonyProjectWorkflow.AddStep(&create.RewriteYamlConfigToPhpStep{})
-	createSymfonyProjectWorkflow.AddStep(&create.ReorganizeNeededFoldersStep{})
+	createSymfonyProjectWorkflow.AddStep(&symfony.RequireSymfonySkeletonStep{})
+	createSymfonyProjectWorkflow.AddStep(&symfony.RequireAdditionalDependenciesStep{})
+	createSymfonyProjectWorkflow.AddStep(&symfony.RequireDevelopmentDependenciesStep{})
+	createSymfonyProjectWorkflow.AddStep(&symfony.RewriteYamlConfigToPhpStep{})
+	createSymfonyProjectWorkflow.AddStep(&symfony.ReorganizeNeededFoldersStep{})
 	createSymfonyProjectWorkflow.AddStep(&shared.AddDockerComposeFileStep{})
 	createSymfonyProjectWorkflow.AddStep(&shared.AddMakefileStep{})
 

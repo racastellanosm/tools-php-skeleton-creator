@@ -5,6 +5,7 @@ import (
 
 	"github.com/racastellanosm/tools-php-skeleton-creator/utilities"
 	"github.com/racastellanosm/tools-php-skeleton-creator/workflows"
+	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps"
 	"github.com/spf13/cobra"
 )
 
@@ -16,11 +17,10 @@ var (
 var CreateProjectWithSlimCommand = &cobra.Command{
 	Use:   "create-with-slim --name your-project-name [--db postgresql|mysql ]",
 	Short: "Create a new PHP skeleton with Slim Framework",
-	Long: `Create a new PHP project wiht Slim framework following recommended development guidelines (DDD, CQRS, Testing, Automation).
-This command initializes a new project directory with the necessary files and structure for a PHP application.`,
+	Long:  `Create a new PHP project with Slim framework following recommended development guidelines (DDD, CQRS, Testing, Automation).\nThis command initializes a new project directory with the necessary files and structure for a PHP application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 
-		parameters := workflows.StepParameters{
+		parameters := steps.StepParameters{
 			ProjectName: slimProjectName,
 			Database:    slimDatabase,
 		}
@@ -33,7 +33,7 @@ This command initializes a new project directory with the necessary files and st
 		}
 
 		dir, _ := os.Getwd()
-		var newVar = "[OK] Project created successfully in " + dir + "/" + projectName
+		var newVar = "[OK] Project created successfully in " + dir + "/" + slimProjectName
 		utilities.PrintSuccessBox(os.Stdout, newVar)
 	},
 }

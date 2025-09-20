@@ -1,4 +1,4 @@
-package create
+package symfony
 
 import (
 	"fmt"
@@ -18,7 +18,8 @@ func (s *RequireDevelopmentDependenciesStep) Execute(parameters steps.StepParame
 	}
 
 	dependencies := []string{
-		"phpunit/phpunit",
+		"symfony/test-pack",
+		"symplify/config-transformer",
 	}
 
 	if output, err := utilities.RunComposer(utilities.ComposerRunner{}, append(prefixCommand, dependencies...)); err != nil {

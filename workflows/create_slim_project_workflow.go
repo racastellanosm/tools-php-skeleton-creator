@@ -4,9 +4,9 @@ import (
 	"fmt"
 
 	"github.com/racastellanosm/tools-php-skeleton-creator/utilities"
-	create "github.com/racastellanosm/tools-php-skeleton-creator/workflows/create_slim_project"
-	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/shared"
 	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps"
+	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps/shared"
+	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps/slim"
 )
 
 var _ Workflow = (*CreateSlimProjectWorkflow)(nil)
@@ -24,9 +24,9 @@ func (w *CreateSlimProjectWorkflow) AddStep(step steps.Step) {
 func NewCreateSlimProjectWorkflow() *CreateSlimProjectWorkflow {
 	newCreateSlimProjectWorkflow := &CreateSlimProjectWorkflow{}
 
-	newCreateSlimProjectWorkflow.AddStep(&create.RequireSlimSkeletonStep{})
-	newCreateSlimProjectWorkflow.AddStep(&create.RequireDevelopmentDependenciesStep{})
-	newCreateSlimProjectWorkflow.AddStep(&create.ReorganizeNeededFoldersStep{})
+	newCreateSlimProjectWorkflow.AddStep(&slim.RequireSlimSkeletonStep{})
+	newCreateSlimProjectWorkflow.AddStep(&slim.RequireDevelopmentDependenciesStep{})
+	newCreateSlimProjectWorkflow.AddStep(&slim.ReorganizeNeededFoldersStep{})
 	newCreateSlimProjectWorkflow.AddStep(&shared.AddDockerComposeFileStep{})
 	newCreateSlimProjectWorkflow.AddStep(&shared.AddMakefileStep{})
 
