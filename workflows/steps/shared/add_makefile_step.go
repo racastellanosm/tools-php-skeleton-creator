@@ -13,7 +13,7 @@ func (s *AddMakefileStep) Execute(parameters steps.StepParameters) error {
 	fmt.Println("* Add Makefile Step inside  " + parameters.ProjectName)
 
 	destinationPath := fmt.Sprintf("%s/Makefile", parameters.ProjectName)
-	sourceFile := "templates/makefile/Makefile.in"
+	sourceFile := "templates/makefile/Makefile"
 
 	if err := utilities.CopyFile(sourceFile, destinationPath); err != nil {
 		return fmt.Errorf("failed to copy Makefile: %w", err)

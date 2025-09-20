@@ -1,7 +1,6 @@
 SHELL				:= /bin/bash
-RANDOM				:= $(shell cat /dev/urandom | env LC_CTYPE=C tr -dc 'a-z0-9' | fold -w 12 | head -n 1)
-PROJECT_NAME		:= "my-project-name"-$(RANDOM)
-DOCKER_COMPOSE		:= docker compose -p $(PROJECT_NAME) -f docker-compose.yaml
+PROJECT_NAME		:= project_name_placeholder
+DOCKER_COMPOSE		:= docker compose -p $(PROJECT_NAME)
 
 help:
 	@echo "${GREEN}-------------- USAGE  --------------------------------------${RESET}"
@@ -16,8 +15,9 @@ start: ## Start the stack
 	@$(DOCKER_COMPOSE) up -d || $(MAKE) .cleanup
 stop: ## Stop the stack
 	@$(DOCKER_COMPOSE) down --remove-orphans -v
-unit-test: .is-stack-running ## Execute Unit Tests
-	@$(DOCKER_COMPOSE) exec app /bin/bash -c "php bin/phpunit"
+unit-test:	## Execute Unit Tests within the docker image
+	@$(DOCKER_COMPOSE) run --rm app /bin/sh -c "php bin/phpunit"
+	@$(MAKE) stop || $(MAKE) .cleanup
 
 
 ## Helpers Functions

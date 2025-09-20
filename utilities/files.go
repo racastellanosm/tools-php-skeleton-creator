@@ -56,3 +56,17 @@ func MergeContentBetweenTwoFiles(firstFile string, secondFile string, targetPath
 
 	return nil
 }
+
+func DeleteFile(filePath string) error {
+	// Delete the given file from path only if exists
+	if _, err := os.Stat(filePath); os.IsNotExist(err) {
+		return nil
+	}
+
+	err := os.Remove(filePath)
+	if err != nil {
+		return fmt.Errorf("failed to delete file: %w", err)
+	}
+
+	return nil
+}

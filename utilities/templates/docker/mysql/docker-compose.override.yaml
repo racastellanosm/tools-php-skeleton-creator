@@ -1,14 +1,10 @@
 # This file is used only in development environment. to open ports and expose services available for development only.
 services:
-  api:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: ${BUILD_TARGET}
+  app:
     # Load RoadRunner configuration for development
     command: [ "sh", "-c", "/usr/bin/rr serve -c .rr.dev.yaml" ]
     volumes:
-      - ./src:/app
+      - .:/app
     # Disable healthcheck for development since RoadRunner is in debug mode
     healthcheck:
       # Disable healthcheck for development since RoadRunner is in debug mode
@@ -18,9 +14,6 @@ services:
       - "8081:8081"
 
   mysql:
-    image: mysql:9.4
-    env_file:
-      - env.dist
     tmpfs:
       - /var/lib/mysql
     ports:
