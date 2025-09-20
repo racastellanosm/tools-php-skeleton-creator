@@ -5,14 +5,19 @@ import (
 
 	"github.com/racastellanosm/tools-php-skeleton-creator/utilities"
 	create "github.com/racastellanosm/tools-php-skeleton-creator/workflows/create_slim_project"
-	shared "github.com/racastellanosm/tools-php-skeleton-creator/workflows/shared"
+	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/shared"
+	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps"
 )
 
+var _ Workflow = (*CreateSlimProjectWorkflow)(nil)
+
+// implement the Workflow interface in this class
+
 type CreateSlimProjectWorkflow struct {
-	steps []Step
+	steps []steps.Step
 }
 
-func (w *CreateSlimProjectWorkflow) AddStep(step Step) {
+func (w *CreateSlimProjectWorkflow) AddStep(step steps.Step) {
 	w.steps = append(w.steps, step)
 }
 
@@ -28,18 +33,18 @@ func NewCreateSlimProjectWorkflow() *CreateSlimProjectWorkflow {
 	return newCreateSlimProjectWorkflow
 }
 
-func (w *CreateSlimProjectWorkflow) Handle(dependencies WorkflowDependencies) error {
+func (w *CreateSlimProjectWorkflow) Handle(parameters steps.StepParameters) error {
 	spinner := utilities.NewSpinner("yellow")
 
 	for _, step := range w.steps {
 		spinner.Start()
 
-		stepError := step.Execute(dependencies.ProjectName)
+		stepError := step.Execute(parameters)
 		if stepError != nil {
 			// use rollback step to clean everything up
-			rollbackError := rollbackInCaseOfFailure(dependencies.ProjectName)
+			rollbackError := rollbackInCaseOfFailure(parameters.ProjectName)
 			if rollbackError != nil {
-				return fmt.Errorf("failed to cleanup workspace for %s : %w", dependencies.ProjectName, rollbackError)
+				return fmt.Errorf("failed to cleanup workspace for %s : %w", parameters.ProjectName, rollbackError)
 			}
 			return stepError
 		}

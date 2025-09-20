@@ -4,13 +4,14 @@ import (
 	"fmt"
 
 	"github.com/racastellanosm/tools-php-skeleton-creator/utilities"
+	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps"
 )
 
 type RequireDevelopmentDependenciesStep struct{}
 
-func (s *RequireDevelopmentDependenciesStep) Execute(projectName string) error {
+func (s *RequireDevelopmentDependenciesStep) Execute(parameters steps.StepParameters) error {
 	fmt.Println("* Require Development Dependencies Step")
-	
+
 	prefixCommand := []string{
 		"require",
 		"--dev",

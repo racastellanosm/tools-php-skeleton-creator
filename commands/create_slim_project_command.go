@@ -20,14 +20,14 @@ var CreateProjectWithSlimCommand = &cobra.Command{
 This command initializes a new project directory with the necessary files and structure for a PHP application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 
-		workflowDependencies := workflows.WorkflowDependencies{
+		parameters := workflows.StepParameters{
 			ProjectName: slimProjectName,
 			Database:    slimDatabase,
 		}
 
 		commandWorkflow := workflows.NewCreateSlimProjectWorkflow()
 
-		if err := commandWorkflow.Handle(workflowDependencies); err != nil {
+		if err := commandWorkflow.Handle(parameters); err != nil {
 			utilities.PrintErrorBox(os.Stdout, `Error: `+err.Error())
 			os.Exit(1)
 		}

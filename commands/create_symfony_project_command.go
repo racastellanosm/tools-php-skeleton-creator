@@ -19,14 +19,14 @@ var CreateProjectWithSymfonyCommand = &cobra.Command{
 	Long: `Create a new PHP project with Symfony framework following recommended development guidelines (DDD, CQRS, Testing, Automation).
 This command initializes a new project directory with the necessary files and structure for a PHP application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		workflowDependencies := workflows.WorkflowDependencies{
+		workflowParameters := workflows.StepParameters{
 			ProjectName: projectName,
 			Database:    database,
 		}
 
 		commandWorkflow := workflows.NewCreateSymfonyProjectWorkflow()
 
-		if err := commandWorkflow.Handle(workflowDependencies); err != nil {
+		if err := commandWorkflow.Handle(workflowParameters); err != nil {
 			utilities.PrintErrorBox(os.Stdout, `Error: `+err.Error())
 			os.Exit(1)
 		}

@@ -1,11 +1,8 @@
 package workflows
 
-type WorkflowDependencies struct {
-	ProjectName string
-	Database    string
-}
+import "github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps"
 
 type Workflow interface {
-	AddStep(step Step)
-	Handle(dependencies WorkflowDependencies) error
+	AddStep(step steps.Step)
+	Handle(parameters steps.StepParameters) error
 }

@@ -3,12 +3,14 @@ package create
 import (
 	"fmt"
 	"os/exec"
+
+	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps"
 )
 
 type RewriteYamlConfigToPhpStep struct{}
 
-func (s *RewriteYamlConfigToPhpStep) Execute(projectName string) error {
-	fmt.Println("* Rewrite YAML Config to PHP Step for " + projectName)
+func (s *RewriteYamlConfigToPhpStep) Execute(parameters steps.StepParameters) error {
+	fmt.Println("* Rewrite YAML Config to PHP Step for " + parameters.ProjectName)
 
 	command := exec.Command("vendor/bin/config-transformer")
 

@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/racastellanosm/tools-php-skeleton-creator/commands"
-	"github.com/fatih/color"
-	"github.com/spf13/cobra"
 	"time"
+
+	"github.com/fatih/color"
+	"github.com/racastellanosm/tools-php-skeleton-creator/commands"
+	"github.com/spf13/cobra"
 )
 
 // build version & date are overridden at linking time
