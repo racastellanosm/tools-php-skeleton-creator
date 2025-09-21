@@ -17,6 +17,7 @@ http:
   raw_body: false
 
   pool:
+    debug: true
     num_workers: ${APP_NUM_WORKERS}
     max_jobs: ${APP_MAX_JOBS}
     supervisor:
@@ -34,6 +35,6 @@ status:
 
 logs:
   mode: development
-  level: debug
+  level: ${APP_LOG_LEVEL}
   # Encoding format can be "console" or "json" (last is preferred for production usage).
   encoding: json

@@ -38,12 +38,9 @@ logs:
   encoding: json
   channels:
     http:
-      level: info # Log all http requests, set to info to disable
+      level: ${APP_LOG_LEVEL} # Log all http requests, set to info to disable
       encoding: json
     server:
-      level: info # Everything written to worker stderr is logged
-      encoding: json
-    metrics:
-      level: error
+      level: ${APP_LOG_LEVEL} # Everything written to worker stderr is logged
       encoding: json
 

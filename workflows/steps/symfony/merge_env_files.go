@@ -20,8 +20,12 @@ func (s *MergeEnvironmentFiles) Execute(parameters steps.StepParameters) error {
 	templateFile := "templates/docker/" + parameters.Database + "/env.dist"
 	targetPath := parameters.ProjectName + "/.env"
 
-	if err := utilities.MergeContentBetweenTwoFiles(targetPath, templateFile, targetPath); err != nil {
-		return fmt.Errorf("failed to merge environment files: %w", err)
+	if err := os.Remove(targetPath); err != nil {
+		return fmt.Errorf("failed to remove environment file: %w", err)
+	}
+
+	if err := utilities.CopyFile(templateFile, targetPath); err != nil {
+		return fmt.Errorf("failed to copy environment file: %w", err)
 	}
 
 	return nil
