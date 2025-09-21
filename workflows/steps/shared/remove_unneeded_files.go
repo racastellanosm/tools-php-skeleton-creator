@@ -13,7 +13,7 @@ type RemoveUnneededFiles struct{}
 func (s *RemoveUnneededFiles) Execute(parameters steps.StepParameters) error {
 	// scan the given path, and if a match is found inside deleteThisFile array then delete it
 
-	deleteThisFiles := []string{".editorconfig", ".env.test", ".env.dev", ".env.local"}
+	deleteThisFiles := []string{".editorconfig", ".env.test", ".env.dev", ".env.local", "compose.yaml", "compose.override.yaml"}
 
 	for _, file := range deleteThisFiles {
 		if err := utilities.DeleteFile(parameters.ProjectName + "/" + file); err != nil {
