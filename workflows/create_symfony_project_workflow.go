@@ -18,6 +18,7 @@ func NewCreateSymfonyProjectWorkflow() *CreateSymfonyProjectWorkflow {
 	createSymfonyProjectWorkflow.AddStep(&symfony.RequireSymfonySkeletonStep{})
 	createSymfonyProjectWorkflow.AddStep(&symfony.RequireAdditionalDependenciesStep{})
 	createSymfonyProjectWorkflow.AddStep(&symfony.RequireDevelopmentDependenciesStep{})
+	createSymfonyProjectWorkflow.AddStep(&symfony.RequireDoctrineDependencies{})
 	createSymfonyProjectWorkflow.AddStep(&symfony.RewriteYamlConfigToPhpStep{})
 	createSymfonyProjectWorkflow.AddStep(&symfony.ReorganizeNeededFoldersStep{})
 	createSymfonyProjectWorkflow.AddStep(&symfony.MergeEnvironmentFiles{})

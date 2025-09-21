@@ -17,7 +17,8 @@ func (s *ReorganizeNeededFoldersStep) Execute(parameters steps.StepParameters) e
 	}
 
 	dirs := []string{
-		"src/Application",
+		"src/Application/Command",
+		"src/Application/Query",
 		"src/Domain",
 		"src/Infrastructure",
 		"src/UI/Http/Controller",
