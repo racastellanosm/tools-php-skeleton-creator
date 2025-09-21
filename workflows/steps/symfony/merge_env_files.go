@@ -28,5 +28,10 @@ func (s *MergeEnvironmentFiles) Execute(parameters steps.StepParameters) error {
 		return fmt.Errorf("failed to copy environment file: %w", err)
 	}
 
+	dockerignore := "templates/docker/" + parameters.Database + "/dockerignore.dist"
+	if err := utilities.CopyFile(dockerignore, parameters.ProjectName+"/.dockerignore"); err != nil {
+		return fmt.Errorf("failed to copy dockerignore file: %w", err)
+	}
+
 	return nil
 }
