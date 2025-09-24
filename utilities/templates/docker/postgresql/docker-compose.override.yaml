@@ -14,10 +14,8 @@ services:
       - "8081:8081"
 
   postgresql:
-    shm_size: 128mb
+    shm_size: 256mb
     tmpfs:
       - /var/lib/postgresql/data
-    volumes:
-      - ./docker/postgresql/init:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"

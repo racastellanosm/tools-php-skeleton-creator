@@ -8,7 +8,7 @@ ADD composer.json composer.lock /app/
 RUN composer install --no-cache --no-scripts -o
 
 # Copy the rest of the application
-COPY .. /app
+COPY . .
 
 # Post install scripts
 RUN composer run-script post-install-cmd
