@@ -10,7 +10,7 @@ import (
 type RequireDoctrineDependencies struct{}
 
 func (s *RequireDoctrineDependencies) Execute(parameters steps.StepParameters) error {
-	fmt.Println("* Require Additional Dependencies Step")
+	fmt.Println("* Require Doctrine Dependencies Step")
 
 	dependenciesNoScript := []string{
 		"doctrine/doctrine-migrations-bundle",

@@ -11,7 +11,7 @@ import (
 type MergeEnvironmentFiles struct{}
 
 func (s *MergeEnvironmentFiles) Execute(parameters steps.StepParameters) error {
-	fmt.Printf("* Merge Environment Files Step for %s\n", parameters.ProjectName)
+	fmt.Println("* Merge Environment Files Step")
 
 	if err := os.Chdir(".."); err != nil {
 		return fmt.Errorf("failed to change directory to %s: %w", parameters.ProjectName, err)

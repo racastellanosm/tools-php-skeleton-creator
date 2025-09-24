@@ -10,7 +10,7 @@ import (
 type ReorganizeNeededFoldersStep struct{}
 
 func (s *ReorganizeNeededFoldersStep) Execute(parameters steps.StepParameters) error {
-	fmt.Println("* Reorganize Needed Folders Step" + parameters.ProjectName)
+	fmt.Println("* Reorganize Needed Folders Step")
 
 	if err := os.RemoveAll("src/Controller"); err != nil {
 		return fmt.Errorf("failed to remove directory src/Controllers: %w", err)

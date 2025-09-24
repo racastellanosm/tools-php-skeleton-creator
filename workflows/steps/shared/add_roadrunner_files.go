@@ -10,6 +10,7 @@ import (
 type AddRoadrunnerFiles struct{}
 
 func (s *AddRoadrunnerFiles) Execute(parameters steps.StepParameters) error {
+	fmt.Println("* Add RoadRunner Files Step")
 
 	files := []string{".rr.yaml", ".rr.dev.yaml"}
 

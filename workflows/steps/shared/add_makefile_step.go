@@ -10,7 +10,7 @@ import (
 type AddMakefileStep struct{}
 
 func (s *AddMakefileStep) Execute(parameters steps.StepParameters) error {
-	fmt.Println("* Add Makefile Step inside  " + parameters.ProjectName)
+	fmt.Println("* Add Makefile Step")
 
 	destinationPath := fmt.Sprintf("%s/Makefile", parameters.ProjectName)
 	sourceFile := "templates/makefile/Makefile"

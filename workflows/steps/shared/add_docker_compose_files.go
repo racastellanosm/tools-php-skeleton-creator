@@ -10,7 +10,7 @@ import (
 type AddDockerComposeFileStep struct{}
 
 func (s *AddDockerComposeFileStep) Execute(parameters steps.StepParameters) error {
-	fmt.Println("* Add Docker Compose Files Step" + parameters.ProjectName)
+	fmt.Println("* Add Docker Compose Files Step")
 
 	files := []string{"docker-compose.yaml", "docker-compose.override.yaml", "Dockerfile"}
 
