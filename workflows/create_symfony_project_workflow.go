@@ -21,7 +21,7 @@ func NewCreateSymfonyProjectWorkflow() *CreateSymfonyProjectWorkflow {
 	createSymfonyProjectWorkflow.AddStep(&symfony.RequireDoctrineDependenciesStep{})
 	createSymfonyProjectWorkflow.AddStep(&symfony.RewriteYamlConfigToPhpStep{})
 	createSymfonyProjectWorkflow.AddStep(&symfony.ReorganizeNeededFoldersStep{})
-	createSymfonyProjectWorkflow.AddStep(&symfony.MergeEnvironmentFilesStep{})
+	createSymfonyProjectWorkflow.AddStep(&shared.MergeEnvironmentFilesStep{})
 	createSymfonyProjectWorkflow.AddStep(&symfony.UpdatePathsAndVariablesStep{})
 	createSymfonyProjectWorkflow.AddStep(&shared.AddDockerComposeFileStep{})
 	createSymfonyProjectWorkflow.AddStep(&shared.AddRoadrunnerFilesStep{})

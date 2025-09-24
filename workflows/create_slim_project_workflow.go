@@ -13,17 +13,18 @@ type CreateSlimProjectWorkflow struct {
 }
 
 func NewCreateSlimProjectWorkflow() *CreateSlimProjectWorkflow {
-	newCreateSlimProjectWorkflow := &CreateSlimProjectWorkflow{}
+	createSlimProjectWorkflow := &CreateSlimProjectWorkflow{}
 
-	newCreateSlimProjectWorkflow.AddStep(&slim.RequireSlimSkeletonStep{})
-	newCreateSlimProjectWorkflow.AddStep(&slim.RequireDevelopmentDependenciesStep{})
-	newCreateSlimProjectWorkflow.AddStep(&slim.ReorganizeNeededFoldersStep{})
-	newCreateSlimProjectWorkflow.AddStep(&shared.AddDockerComposeFileStep{})
-	newCreateSlimProjectWorkflow.AddStep(&shared.AddRoadrunnerFilesStep{})
-	newCreateSlimProjectWorkflow.AddStep(&shared.AddMakefileStep{})
-	newCreateSlimProjectWorkflow.AddStep(&shared.CleanUpStep{})
+	createSlimProjectWorkflow.AddStep(&slim.RequireSlimSkeletonStep{})
+	createSlimProjectWorkflow.AddStep(&slim.RequireDevelopmentDependenciesStep{})
+	createSlimProjectWorkflow.AddStep(&slim.ReorganizeNeededFoldersStep{})
+	createSlimProjectWorkflow.AddStep(&shared.MergeEnvironmentFilesStep{})
+	createSlimProjectWorkflow.AddStep(&shared.AddDockerComposeFileStep{})
+	createSlimProjectWorkflow.AddStep(&shared.AddRoadrunnerFilesStep{})
+	createSlimProjectWorkflow.AddStep(&shared.AddMakefileStep{})
+	createSlimProjectWorkflow.AddStep(&shared.CleanUpStep{})
 
-	return newCreateSlimProjectWorkflow
+	return createSlimProjectWorkflow
 }
 
 func (w *CreateSlimProjectWorkflow) Handle(parameters steps.StepParameters) error {

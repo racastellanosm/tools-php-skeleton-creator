@@ -19,5 +19,13 @@ func (s *AddMakefileStep) Execute(parameters steps.StepParameters) error {
 		return fmt.Errorf("failed to copy Makefile: %w", err)
 	}
 
+	makefile := parameters.ProjectName + "/Makefile"
+	oldString := "project_name_placeholder"
+	newString := parameters.ProjectName
+
+	if err := utilities.ReplaceAndCreate(makefile, oldString, newString); err != nil {
+		return fmt.Errorf("failed to replace and create file: %w", err)
+	}
+
 	return nil
 }

@@ -1,4 +1,4 @@
-package symfony
+package shared
 
 import (
 	"fmt"
@@ -31,6 +31,14 @@ func (s *MergeEnvironmentFilesStep) Execute(parameters steps.StepParameters) err
 	dockerignore := "templates/docker/" + parameters.Database + "/dockerignore.dist"
 	if err := utilities.CopyFile(dockerignore, parameters.ProjectName+"/.dockerignore"); err != nil {
 		return fmt.Errorf("failed to copy dockerignore file: %w", err)
+	}
+
+	envFile := parameters.ProjectName + "/.env"
+	oldString := "project_name_placeholder"
+	newString := parameters.ProjectName
+
+	if err := utilities.ReplaceAndCreate(envFile, oldString, newString); err != nil {
+		return fmt.Errorf("failed to replace and create file: %w", err)
 	}
 
 	return nil
