@@ -10,7 +10,7 @@ import (
 type RewriteYamlConfigToPhpStep struct{}
 
 func (s *RewriteYamlConfigToPhpStep) Execute(parameters steps.StepParameters) error {
-	fmt.Println("* Rewrite YAML Config to PHP Step for " + parameters.ProjectName)
+	fmt.Println("* Rewrite YAML Config to PHP Step")
 
 	command := exec.Command("vendor/bin/config-transformer")
 

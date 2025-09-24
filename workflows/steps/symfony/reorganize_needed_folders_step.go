@@ -12,15 +12,12 @@ type ReorganizeNeededFoldersStep struct{}
 func (s *ReorganizeNeededFoldersStep) Execute(parameters steps.StepParameters) error {
 	fmt.Println("* Reorganize Needed Folders Step")
 
-	if err := os.RemoveAll("src/Controller"); err != nil {
-		return fmt.Errorf("failed to remove directory src/Controllers: %w", err)
-	}
-
 	dirs := []string{
 		"src/Application/Command",
 		"src/Application/Query",
 		"src/Domain",
 		"src/Infrastructure",
+		"src/Infrastructure/Resources/Migrations",
 		"src/UI/Http/Controller",
 	}
 

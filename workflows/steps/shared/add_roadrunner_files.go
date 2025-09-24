@@ -7,9 +7,9 @@ import (
 	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps"
 )
 
-type AddRoadrunnerFiles struct{}
+type AddRoadrunnerFilesStep struct{}
 
-func (s *AddRoadrunnerFiles) Execute(parameters steps.StepParameters) error {
+func (s *AddRoadrunnerFilesStep) Execute(parameters steps.StepParameters) error {
 	fmt.Println("* Add RoadRunner Files Step")
 
 	files := []string{".rr.yaml", ".rr.dev.yaml"}

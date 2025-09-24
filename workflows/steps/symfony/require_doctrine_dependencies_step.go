@@ -7,9 +7,9 @@ import (
 	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps"
 )
 
-type RequireDoctrineDependencies struct{}
+type RequireDoctrineDependenciesStep struct{}
 
-func (s *RequireDoctrineDependencies) Execute(parameters steps.StepParameters) error {
+func (s *RequireDoctrineDependenciesStep) Execute(parameters steps.StepParameters) error {
 	fmt.Println("* Require Doctrine Dependencies Step")
 
 	dependenciesNoScript := []string{

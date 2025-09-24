@@ -8,9 +8,9 @@ import (
 	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps"
 )
 
-type RemoveUnneededFiles struct{}
+type CleanUpStep struct{}
 
-func (s *RemoveUnneededFiles) Execute(parameters steps.StepParameters) error {
+func (s *CleanUpStep) Execute(parameters steps.StepParameters) error {
 	// scan the given path, and if a match is found inside deleteThisFile array then delete it
 	fmt.Println("* Cleanup Step")
 	deleteThisFiles := []string{".editorconfig", ".env.test", ".env.dev", ".env.local", "compose.yaml", "compose.override.yaml"}
@@ -25,6 +25,7 @@ func (s *RemoveUnneededFiles) Execute(parameters steps.StepParameters) error {
 		"migrations",
 		"src/Entity",
 		"src/Repository",
+		"src/Controller",
 	}
 
 	for _, folder := range deleteThisFolders {

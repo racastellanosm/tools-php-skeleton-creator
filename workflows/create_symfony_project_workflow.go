@@ -18,14 +18,15 @@ func NewCreateSymfonyProjectWorkflow() *CreateSymfonyProjectWorkflow {
 	createSymfonyProjectWorkflow.AddStep(&symfony.RequireSymfonySkeletonStep{})
 	createSymfonyProjectWorkflow.AddStep(&symfony.RequireAdditionalDependenciesStep{})
 	createSymfonyProjectWorkflow.AddStep(&symfony.RequireDevelopmentDependenciesStep{})
-	createSymfonyProjectWorkflow.AddStep(&symfony.RequireDoctrineDependencies{})
+	createSymfonyProjectWorkflow.AddStep(&symfony.RequireDoctrineDependenciesStep{})
 	createSymfonyProjectWorkflow.AddStep(&symfony.RewriteYamlConfigToPhpStep{})
 	createSymfonyProjectWorkflow.AddStep(&symfony.ReorganizeNeededFoldersStep{})
-	createSymfonyProjectWorkflow.AddStep(&symfony.MergeEnvironmentFiles{})
+	createSymfonyProjectWorkflow.AddStep(&symfony.MergeEnvironmentFilesStep{})
+	createSymfonyProjectWorkflow.AddStep(&symfony.UpdatePathsAndVariablesStep{})
 	createSymfonyProjectWorkflow.AddStep(&shared.AddDockerComposeFileStep{})
-	createSymfonyProjectWorkflow.AddStep(&shared.AddRoadrunnerFiles{})
+	createSymfonyProjectWorkflow.AddStep(&shared.AddRoadrunnerFilesStep{})
 	createSymfonyProjectWorkflow.AddStep(&shared.AddMakefileStep{})
-	createSymfonyProjectWorkflow.AddStep(&shared.RemoveUnneededFiles{})
+	createSymfonyProjectWorkflow.AddStep(&shared.CleanUpStep{})
 
 	return createSymfonyProjectWorkflow
 }

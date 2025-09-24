@@ -8,9 +8,9 @@ import (
 	"github.com/racastellanosm/tools-php-skeleton-creator/workflows/steps"
 )
 
-type MergeEnvironmentFiles struct{}
+type MergeEnvironmentFilesStep struct{}
 
-func (s *MergeEnvironmentFiles) Execute(parameters steps.StepParameters) error {
+func (s *MergeEnvironmentFilesStep) Execute(parameters steps.StepParameters) error {
 	fmt.Println("* Merge Environment Files Step")
 
 	if err := os.Chdir(".."); err != nil {
