@@ -23,7 +23,7 @@ http:
     supervisor:
       max_worker_memory: ${APP_MAX_WORKER_MEMORY}
 
-  middleware: [ "headers", "gzip", "http_metrics" ]
+  middleware: [ "gzip", "http_metrics" ]
 
 metrics:
   # Prometheus client address (path /metrics added automatically).
