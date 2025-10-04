@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: api
+    container_name: app
     command: [ "sh", "-c", "/usr/bin/rr serve -c .rr.yaml" ]
     env_file:
       - .env
@@ -21,7 +21,7 @@ services:
     env_file:
       - .env
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -d my_app -U my_user" ]
+      test:  ["CMD-SHELL", "pg_isready -d $$POSTGRES_DB -U $$POSTGRES_USER"]
       interval: 2s
       timeout: 5s
       retries: 30

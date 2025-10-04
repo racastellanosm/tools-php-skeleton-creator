@@ -19,6 +19,9 @@ func (s *ReorganizeNeededFoldersStep) Execute(parameters steps.StepParameters) e
 		"src/Infrastructure",
 		"src/Infrastructure/Resources/Migrations",
 		"src/UI/Http/Controller",
+		"tests/Unit",
+		"tests/Integration",
+		"tests/Functional",
 	}
 
 	for _, dir := range dirs {

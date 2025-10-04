@@ -23,7 +23,7 @@ services:
     tmpfs:
       - /var/lib/mysql
     healthcheck:
-      test: [ "CMD-SHELL", "mysql -u my_user -pmy_password -e 'SELECT 1'" ]
+      test: [ "CMD-SHELL", "mysql -u $$MYSQL_USER -p$$MYSQL_PASSWORD -e 'SELECT 1'" ]
       interval: 2s
       timeout: 5s
       retries: 30

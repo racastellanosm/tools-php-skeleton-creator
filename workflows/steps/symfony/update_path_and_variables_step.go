@@ -41,8 +41,15 @@ func (s *UpdatePathsAndVariablesStep) Execute(parameters steps.StepParameters) e
 
 	// routing file
 	routingFile := parameters.ProjectName + "/config/routes.php"
-	oldString = "''../src/Controller/'"
+	oldString = "'../src/Controller/'"
 	newString = "'../src/UI/Http/Controller/'"
+
+	if err := utilities.ReplaceAndCreate(routingFile, oldString, newString); err != nil {
+		return fmt.Errorf("failed to replace and create file: %w", err)
+	}
+
+	oldString = "'App\\Controller'"
+	newString = "'App\\UI\\Http\\Controller'"
 
 	if err := utilities.ReplaceAndCreate(routingFile, oldString, newString); err != nil {
 		return fmt.Errorf("failed to replace and create file: %w", err)
