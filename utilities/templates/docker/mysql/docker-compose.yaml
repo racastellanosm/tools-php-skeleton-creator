@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: api
-    command: [ "sh", "-c", "/usr/bin/rr serve -c .rr.yaml" ]
+    command: [ "sh", "-c", "bin/console c:c --no-interaction --env=$$APP_ENV && /usr/bin/rr serve -c .rr.yaml" ]
     env_file:
       - .env
     healthcheck:
