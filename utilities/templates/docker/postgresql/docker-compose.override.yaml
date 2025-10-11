@@ -2,7 +2,7 @@
 services:
   app:
     # Load RoadRunner configuration for development
-    command: [ "sh", "-c", "/usr/bin/rr serve -c .rr.dev.yaml" ]
+    command: [ "sh", "-c", "bin/console c:c --no-interaction --env=$$APP_ENV && /usr/bin/rr serve -c .rr.dev.yaml" ]
     volumes:
       - .:/app
     # Disable healthcheck for development since RoadRunner is in debug mode
