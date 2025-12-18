@@ -36,10 +36,10 @@ integration-test: ## Execute Integration Tests with all the stack running in doc
 	@$(MAKE) migrations
 	@if [ -z "$(debug)" ]; then \
   		echo "👀 Running Integration Tests..."; \
-  		$(DOCKER_COMPOSE) exec -it app sh -c "php ${COVERAGE_PARAMETERS} bin/phpunit --testsuite integration" || $(MAKE) .cleanup; \
+  		$(DOCKER_COMPOSE) exec app sh -c "php ${COVERAGE_PARAMETERS} bin/phpunit --testsuite integration" || $(MAKE) .cleanup; \
   	else \
   	  	echo "🐛 Running Integration Tests with Xdebug..."; \
-  		$(DOCKER_COMPOSE) exec -it app sh -c "php ${DEBUG_PARAMETERS} bin/phpunit --no-coverage --group debug --testsuite integration" || $(MAKE) .cleanup; \
+  		$(DOCKER_COMPOSE) exec app sh -c "php ${DEBUG_PARAMETERS} bin/phpunit --no-coverage --group debug --testsuite integration" || $(MAKE) .cleanup; \
   	fi
 	@$(MAKE) stop
 functional-test: ## Execute Functional Tests with all the stack running in docker
@@ -47,10 +47,10 @@ functional-test: ## Execute Functional Tests with all the stack running in docke
 	@$(MAKE) migrations
 	@if [ -z "$(debug)" ]; then \
   		echo "👀 Running Functional Tests..."; \
-		$(DOCKER_COMPOSE) exec -it app sh -c "php ${COVERAGE_PARAMETERS} bin/phpunit --testsuite functional" || $(MAKE) .cleanup; \
+		$(DOCKER_COMPOSE) exec -e APP_ENV=test api sh -c "php ${COVERAGE_PARAMETERS} bin/phpunit --testsuite functional" || $(MAKE) .cleanup; \
 	else \
 	  	echo "🐛 Running Functional Tests with Xdebug..."; \
-		$(DOCKER_COMPOSE) exec -it app sh -c "php ${DEBUG_PARAMETERS} bin/phpunit --no-coverage --group debug --testsuite functional" || $(MAKE) .cleanup; \
+		$(DOCKER_COMPOSE) exec -e APP_ENV=test api sh -c "php ${DEBUG_PARAMETERS} bin/phpunit --no-coverage --group debug --testsuite functional" || $(MAKE) .cleanup; \
 	fi
 	@$(MAKE) stop
 migrations: ## Execute doctrine migrations
@@ -61,5 +61,7 @@ migrations: ## Execute doctrine migrations
 ## Helpers Functions
 .cleanup:
 	@$(DOCKER_COMPOSE) down --remove-orphans -v
+	@echo "‼️ Stack finished with errors..."
+	@exit 1
 
 .PHONY: build start stop unit-test integration-test functional-test migrations
