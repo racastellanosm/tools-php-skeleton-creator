@@ -5,9 +5,9 @@ services:
     command: [ "sh", "-c", "bin/console c:c --no-interaction --env=$$APP_ENV && /usr/bin/rr serve -c .rr.dev.yaml" ]
     volumes:
       - .:/app
-    # Disable healthcheck for development since RoadRunner is in debug mode
+    # Disable health check for development since RoadRunner is in debug mode
     healthcheck:
-      # Disable healthcheck for development since RoadRunner is in debug mode
+      # Disable health check for development since RoadRunner is in debug mode
       test: ["CMD-SHELL", "exit 0"]
     ports:
       - "8080:8080"
